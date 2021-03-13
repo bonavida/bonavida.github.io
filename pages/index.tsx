@@ -6,7 +6,7 @@ export default function Home(): JSX.Element {
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico?v=1" />
       </Head>
 
       <main className={styles.main}>
