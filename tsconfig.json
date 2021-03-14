@@ -17,6 +17,9 @@
       "@customTypes/*": [
         "types/*"
       ],
+      "@themes/*": [
+        "themes/*"
+      ],
       "@utils/*": [
         "utils/*"
       ],

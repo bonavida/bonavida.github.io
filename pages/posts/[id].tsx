@@ -20,6 +20,7 @@ const PostTemplate = ({ content, title }: Post): JSX.Element => (
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();
+
   return {
     paths,
     fallback: false,

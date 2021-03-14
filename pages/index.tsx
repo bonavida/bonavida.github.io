@@ -5,28 +5,25 @@ import { GetStaticProps } from 'next';
 import { PostMetadata } from '@customTypes/post';
 /** Services */
 import { getSortedPostsData } from '@services/posts';
-/** Styles */
-import styles from '@styles/Home.module.css';
 
 export type HomeProps = {
   posts: PostMetadata[];
 };
 
 export const Home = ({ posts }: HomeProps): JSX.Element => (
-  <div className={styles.container}>
+  <div>
     <Head>
       <title>bonavida.dev</title>
       <link rel="icon" href="/favicon.ico?v=1" />
     </Head>
 
-    <main className={styles.main}>
-      <h1 className={styles.title}>
+    <main>
+      <h1>
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
 
-      <p className={styles.description}>
-        Get started by editing{' '}
-        <code className={styles.code}>pages/index.js</code>
+      <p>
+        Get started by editing <code>pages/index.js</code>
       </p>
 
       <ul>
@@ -42,14 +39,13 @@ export const Home = ({ posts }: HomeProps): JSX.Element => (
       </ul>
     </main>
 
-    <footer className={styles.footer}>
+    <footer>
       <a
         href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
         target="_blank"
         rel="noopener noreferrer"
       >
-        Powered by{' '}
-        <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+        Powered by <img src="/vercel.svg" alt="Vercel Logo" />
       </a>
     </footer>
   </div>
