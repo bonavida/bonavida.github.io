@@ -1,65 +1,68 @@
 import Head from 'next/head';
+import Link from 'next/link';
+/** Types */
+import { GetStaticProps } from 'next';
+import { PostMetadata } from '@customTypes/post';
+/** Services */
+import { getSortedPostsData } from '@services/posts';
+/** Styles */
 import styles from '@styles/Home.module.css';
 
-export default function Home(): JSX.Element {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico?v=1" />
-      </Head>
+export type HomeProps = {
+  posts: PostMetadata[];
+};
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+export const Home = ({ posts }: HomeProps): JSX.Element => (
+  <div className={styles.container}>
+    <Head>
+      <title>bonavida.dev</title>
+      <link rel="icon" href="/favicon.ico?v=1" />
+    </Head>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+    <main className={styles.main}>
+      <h1 className={styles.title}>
+        Welcome to <a href="https://nextjs.org">Next.js!</a>
+      </h1>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+      <p className={styles.description}>
+        Get started by editing{' '}
+        <code className={styles.code}>pages/index.js</code>
+      </p>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+      <ul>
+        {posts.map(({ id, date, title }) => (
+          <li key={id}>
+            <Link href={`/posts/${id}`}>
+              <a>{title}</a>
+            </Link>
+            <br />
+            <small>{date}</small>
+          </li>
+        ))}
+      </ul>
+    </main>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+    <footer className={styles.footer}>
+      <a
+        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Powered by{' '}
+        <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
+      </a>
+    </footer>
+  </div>
+);
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+export const getStaticProps: GetStaticProps = async () => {
+  const allPostsData = getSortedPostsData();
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  );
-}
+  return {
+    props: {
+      posts: allPostsData,
+    },
+  };
+};
+
+export default Home;

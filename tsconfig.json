@@ -8,20 +8,17 @@
       "@api/*": [
         "pages/api/*"
       ],
+      "@services/*": [
+        "services/*"
+      ],
       "@components/*": [
         "components/*"
       ],
-      "@common/*": [
-        "common/*"
-      ],
-      "@assets/*": [
-        "assets/*"
+      "@customTypes/*": [
+        "types/*"
       ],
       "@utils/*": [
         "utils/*"
-      ],
-      "@config/*": [
-        "config/*"
       ],
       "@styles/*": [
         "styles/*"
