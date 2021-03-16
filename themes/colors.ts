@@ -1,11 +1,27 @@
 export const COLORS = {
   'bg-primary': {
     light: '#fefefe',
-    dark: '#050505',
+    dark: '#101827',
   },
   'bg-secondary': {
     light: '#ffffff',
-    dark: '#151617',
+    dark: '#101827',
+  },
+  'bg-header': {
+    light: '#ffffff',
+    dark: '#172133',
+  },
+  'border-header': {
+    light: '#e6e6e6',
+    dark: '#1c3246',
+  },
+  'text-header-link': {
+    light: '#152736',
+    dark: '#ffffff',
+  },
+  'text-hover-header-link': {
+    light: '#196597',
+    dark: '#ffe100',
   },
   'bg-inset': {
     light: '#eff0f5',
