@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
+/** Components */
+import ThemeToggler from '@components/ThemeToggler';
 /** Types */
 import { GetStaticProps } from 'next';
 import { PostMetadata } from '@customTypes/post';
@@ -18,6 +20,7 @@ export const Home = ({ posts }: HomeProps): JSX.Element => (
     </Head>
 
     <main>
+      <ThemeToggler />
       <h1>
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
