@@ -23,10 +23,10 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <FallbackStyles />
+          <MagicScriptTag />
         </Head>
 
         <body>
-          <MagicScriptTag />
           <Main />
           <NextScript />
         </body>
