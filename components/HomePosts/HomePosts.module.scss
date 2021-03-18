@@ -20,6 +20,9 @@
 }
 
 .post {
+  display: flex;
+  flex-direction: column;
+
   &:not(:last-of-type) {
     margin-bottom: 1em;
   }
@@ -28,4 +31,34 @@
 .postLink {
   font-size: 18px;
   font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.postMetadata {
+  display: flex;
+  align-items: center;
+}
+
+.postReadingTime {
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '·';
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin: 0 7px;
+  }
+}
+
+.postDate,
+.postReadingTimeText {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.postReadingTimeIcon {
+  color: var(--text-primary);
+  font-size: 11px;
+  margin-right: 7px;
 }

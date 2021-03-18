@@ -4,6 +4,7 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 import prism from 'remark-prism';
+import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
 
@@ -21,11 +22,14 @@ export const getSortedPostsData = (): PostMetadata[] => {
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
-    const { data } = matter(fileContents);
+    const { content, data } = matter(fileContents);
+
+    const { text } = readingTime(content);
 
     // Combine the data with the id
     return {
       id,
+      readingTime: text,
       ...data,
     };
   });
@@ -57,10 +61,13 @@ export const getPostData = async (id: string): Promise<Post> => {
   const processedContent = await remark().use(html).use(prism).process(content);
   const contentHtml = processedContent.toString();
 
+  const { text } = readingTime(content);
+
   // Combine the data with the id and contentHtml
   return {
     id,
     content: contentHtml,
+    readingTime: text,
     ...data,
   };
 };

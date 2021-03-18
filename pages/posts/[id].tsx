@@ -8,12 +8,13 @@ import { getAllPostIds, getPostData } from '@services/posts';
 /** Styles */
 import 'prismjs/themes/prism.css';
 
-const PostTemplate = ({ content, title }: Post): JSX.Element => (
+const PostTemplate = ({ content, readingTime, title }: Post): JSX.Element => (
   <>
     <Head>
       <title>{title} | bonavida.dev</title>
     </Head>
     <h1>{title}</h1>
+    <small>{readingTime}</small>
     <ReactMarkdown allowDangerousHtml>{content}</ReactMarkdown>
   </>
 );

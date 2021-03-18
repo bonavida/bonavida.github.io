@@ -36,8 +36,8 @@ export const COLORS = {
     dark: '#fbfbfc',
   },
   'text-secondary': {
-    light: '#2f3037',
-    dark: '#e3e4e8',
+    light: '#777777',
+    dark: '#fefefe',
   },
   'text-tertiary': {
     light: '#525560',
