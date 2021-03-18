@@ -23,15 +23,17 @@
 }
 
 .headerMenuItemLink {
-  text-decoration: none;
   color: var(--text-header-link);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
-  padding: 0 10px;
-  cursor: pointer;
+  padding: 10px 20px;
   transition: all 0.2s ease;
 
   &:hover {
     color: var(--text-hover-header-link);
   }
+}
+
+.headerMenuItemLinkActive {
+  color: var(--text-hover-header-link);
 }

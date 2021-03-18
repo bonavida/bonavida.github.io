@@ -20,7 +20,7 @@ export const COLORS = {
     dark: '#ffffff',
   },
   'text-hover-header-link': {
-    light: '#196597',
+    light: '#d23669',
     dark: '#ffe100',
   },
   'bg-inset': {
@@ -32,7 +32,7 @@ export const COLORS = {
     dark: 'rgba(255,255,255,0.12)',
   },
   'text-primary': {
-    light: '#050505',
+    light: '#171717',
     dark: '#fbfbfc',
   },
   'text-secondary': {
@@ -56,8 +56,8 @@ export const COLORS = {
     dark: '#050505',
   },
   'text-link': {
-    light: '#007AFF',
-    dark: '#FF9500',
+    light: '#d23669',
+    dark: '#ffe100',
   },
   'text-link-rgb': {
     light: '0,122,255',

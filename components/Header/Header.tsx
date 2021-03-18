@@ -1,5 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
+/** Components */
+import ActiveLink from '@components/ActiveLink';
 /** Styles */
 import styles from './Header.module.scss';
 
@@ -7,24 +8,40 @@ const Header = (): JSX.Element => (
   <div className={styles.header}>
     <div className={styles.headerMenu}>
       <div className={styles.headerMenuItem}>
-        <Link href="/">
-          <a className={styles.headerMenuItemLink}>Home</a>
-        </Link>
+        <ActiveLink
+          to="/"
+          className={styles.headerMenuItemLink}
+          activeClassName={styles.headerMenuItemLinkActive}
+        >
+          Home
+        </ActiveLink>
       </div>
       <div className={styles.headerMenuItem}>
-        <Link href="/about">
-          <a className={styles.headerMenuItemLink}>About</a>
-        </Link>
+        <ActiveLink
+          to="/about"
+          className={styles.headerMenuItemLink}
+          activeClassName={styles.headerMenuItemLinkActive}
+        >
+          About
+        </ActiveLink>
       </div>
       <div className={styles.headerMenuItem}>
-        <Link href="/projects">
-          <a className={styles.headerMenuItemLink}>Projects</a>
-        </Link>
+        <ActiveLink
+          to="/projects"
+          className={styles.headerMenuItemLink}
+          activeClassName={styles.headerMenuItemLinkActive}
+        >
+          Projects
+        </ActiveLink>
       </div>
       <div className={styles.headerMenuItem}>
-        <Link href="/setup">
-          <a className={styles.headerMenuItemLink}>Setup</a>
-        </Link>
+        <ActiveLink
+          to="/setup"
+          className={styles.headerMenuItemLink}
+          activeClassName={styles.headerMenuItemLinkActive}
+        >
+          Setup
+        </ActiveLink>
       </div>
     </div>
   </div>
