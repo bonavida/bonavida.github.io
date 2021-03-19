@@ -24,7 +24,6 @@ class MyDocument extends Document {
         <Head>
           <FallbackStyles />
           <MagicScriptTag />
-          <link rel="stylesheet" href="/fonts/iAWriterQuattroV.ttf" />
         </Head>
 
         <body>
