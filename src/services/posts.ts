@@ -8,7 +8,7 @@ import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+const postsDirectory = path.join(process.cwd(), 'src', 'posts');
 
 export const getSortedPostsData = (): PostMetadata[] => {
   // Get file names under /posts

@@ -3,34 +3,31 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": [
-        "pages/*"
+        "src/pages/*"
       ],
       "@api/*": [
-        "pages/api/*"
+        "src/pages/api/*"
       ],
       "@services/*": [
-        "services/*"
+        "src/services/*"
       ],
       "@components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "@context/*": [
-        "context/*"
+        "src/context/*"
       ],
       "@customTypes/*": [
-        "types/*"
+        "src/types/*"
       ],
       "@themes/*": [
-        "themes/*"
+        "src/themes/*"
       ],
       "@utils/*": [
-        "utils/*"
+        "src/utils/*"
       ],
       "@styles/*": [
-        "styles/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
+        "src/styles/*"
       ],
     },
     "target": "es5",
