@@ -1,8 +1,11 @@
+@import './fonts.scss';
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: iA Quattro, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  font-family: iA Quattro, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
 }
 
 body {
@@ -14,6 +17,16 @@ body {
 a {
   color: var(--text-link);
   text-decoration: none;
+}
+
+p {
+  margin-block-end: 20px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
 }
 
 * {
