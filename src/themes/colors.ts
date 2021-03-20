@@ -23,6 +23,10 @@ export const COLORS = {
     light: '#d23669',
     dark: '#ffe100',
   },
+  'avatar-border': {
+    light: '#d23669',
+    dark: '#525560',
+  },
   'bg-inset': {
     light: '#eff0f5',
     dark: '#151617',

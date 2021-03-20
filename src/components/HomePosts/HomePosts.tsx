@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Components */
 import CustomLink from '@components/CustomLink';
-import ThemeToggler from '@components/ThemeToggler';
 /** Types */
 import { PostMetadata } from '@customTypes/post';
 /** Utils */
@@ -15,14 +14,8 @@ type HomePostsProps = {
 };
 
 const HomePosts = ({ posts }: HomePostsProps): JSX.Element => (
-  <main className={styles.main}>
-    <ThemeToggler />
-    <h1 className={styles.mainTitle}>
-      Welcome to <a href="https://nextjs.org">Next.js!</a>
-    </h1>
-
+  <main className={styles.postsContainer}>
     <h2 className={styles.postsTitle}>Posts</h2>
-
     <ul className={styles.posts}>
       {posts.map(({ id, date, title, readingTime }) => (
         <li key={id} className={styles.post}>
