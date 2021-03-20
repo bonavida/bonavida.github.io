@@ -33,7 +33,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
           </p>
           <p>
             Nullam lacinia elit nec arcu lacinia, vel posuere orci elementum.
-            Maecenas felis nulla, aliquam in leo at, placerat lacinia velit..
+            Maecenas felis nulla, aliquam in leo at, placerat lacinia velit.
           </p>
         </div>
         <HomePosts posts={posts} />
@@ -74,9 +74,14 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
       }
 
       .home__name {
+        color: var(--text-primary);
         font-size: 36px;
         font-weight: 700;
         line-height: 40px;
+      }
+
+      p {
+        color: var(--text-primary);
       }
 
       @media (min-width: 768px) {

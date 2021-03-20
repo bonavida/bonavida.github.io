@@ -1,6 +1,6 @@
 export const COLORS = {
   'bg-primary': {
-    light: 'rgba(212,212,212,0.05)',
+    light: '#FCFCFC',
     dark: '#101827',
   },
   'bg-secondary': {
@@ -62,6 +62,14 @@ export const COLORS = {
   'text-link': {
     light: '#d23669',
     dark: '#ffe100',
+  },
+  'text-link-darker': {
+    light: '#c12e5e',
+    dark: '#d2bb0e',
+  },
+  'toggler-yellow': {
+    light: '#ffd712',
+    dark: '#ffd712',
   },
   'text-link-rgb': {
     light: '0,122,255',

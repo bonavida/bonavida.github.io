@@ -28,6 +28,7 @@ const HomePosts = ({ posts }: HomePostsProps): JSX.Element => (
               <FontAwesomeIcon
                 icon="glasses"
                 className={styles.postReadingTimeIcon}
+                style={{ width: '1.125em' }}
               />
               <small className={styles.postReadingTimeText}>
                 {readingTime}
