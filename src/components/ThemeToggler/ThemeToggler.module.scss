@@ -41,7 +41,7 @@
   border-radius: 30px;
   width: 100%;
   height: 100%;
-  border: 2px solid var(--text-link-darker);
+  border: 2px solid var(--border-bg-toggler);
   background-color: var(--bg-primary);
   position: relative;
   z-index: 0;
@@ -84,7 +84,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 2px solid var(--text-link-darker);
+  border: 2px solid var(--border-color-toggler);
   transition: 0.3s;
-  background-color: var(--text-link);
+  background-color: var(--color-toggler);
 }

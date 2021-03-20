@@ -27,10 +27,6 @@ export const COLORS = {
     light: '#d23669',
     dark: '#525560',
   },
-  'bg-inset': {
-    light: '#eff0f5',
-    dark: '#151617',
-  },
   'border-primary': {
     light: 'rgba(65,67,78,0.16)',
     dark: 'rgba(255,255,255,0.12)',
@@ -55,10 +51,6 @@ export const COLORS = {
     light: 'rgba(82,85,96,0.5)',
     dark: 'rgba(145,148,161,0.5)',
   },
-  'text-on-primary': {
-    light: '#fbfbfc',
-    dark: '#050505',
-  },
   'text-link': {
     light: '#d23669',
     dark: '#ffe100',
@@ -67,13 +59,21 @@ export const COLORS = {
     light: '#c12e5e',
     dark: '#d2bb0e',
   },
+  'color-toggler': {
+    light: '#d23669',
+    dark: '#172133',
+  },
+  'border-color-toggler': {
+    light: '#e07195',
+    dark: '#3a3d46',
+  },
+  'border-bg-toggler': {
+    light: '#c12e5e',
+    dark: '#2e3a50',
+  },
   'toggler-yellow': {
     light: '#ffd712',
     dark: '#ffd712',
-  },
-  'text-link-rgb': {
-    light: '0,122,255',
-    dark: '255,149,0',
   },
   'accent-blue': {
     light: '#007AFF',
