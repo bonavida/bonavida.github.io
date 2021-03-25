@@ -3,10 +3,6 @@ export const COLORS = {
     light: '#FCFCFC',
     dark: '#101827',
   },
-  'bg-secondary': {
-    light: '#ffffff',
-    dark: '#101827',
-  },
   'bg-header': {
     light: '#ffffff',
     dark: '#172133',
@@ -27,10 +23,6 @@ export const COLORS = {
     light: '#d23669',
     dark: '#525560',
   },
-  'border-primary': {
-    light: 'rgba(65,67,78,0.16)',
-    dark: 'rgba(255,255,255,0.12)',
-  },
   'text-primary': {
     light: '#171717',
     dark: '#fbfbfc',
@@ -39,25 +31,9 @@ export const COLORS = {
     light: '#777777',
     dark: '#fefefe',
   },
-  'text-tertiary': {
-    light: '#525560',
-    dark: '#a9abb6',
-  },
-  'text-quaternary': {
-    light: '#686B78',
-    dark: '#9094A6',
-  },
-  'text-placeholder': {
-    light: 'rgba(82,85,96,0.5)',
-    dark: 'rgba(145,148,161,0.5)',
-  },
   'text-link': {
     light: '#d23669',
     dark: '#ffe100',
-  },
-  'text-link-darker': {
-    light: '#c12e5e',
-    dark: '#d2bb0e',
   },
   'color-toggler': {
     light: '#d23669',
@@ -75,40 +51,96 @@ export const COLORS = {
     light: '#ffd712',
     dark: '#ffd712',
   },
-  'accent-blue': {
-    light: '#007AFF',
-    dark: '#0A84FF',
+  'code-inline-color': {
+    light: '#db4c69',
+    dark: '#ffd712',
   },
-  'accent-green': {
-    light: '#34C759',
-    dark: '#32D74B',
+  'code-inline-bgColor': {
+    light: '#f9f2f4',
+    dark: '#3e3d3b',
   },
-  'accent-orange': {
-    light: '#FF9500',
-    dark: '#FF9F0A',
+  'code-color': {
+    light: '#2a3032',
+    dark: '#fbfbfc',
   },
-  'accent-red': {
-    light: '#FF3B30',
-    dark: '#FF453A',
+  'code-bgColor': {
+    light: '#f7f7f7',
+    dark: '#282A3A  ',
   },
-  'accent-yellow': {
-    light: '#FFCC00',
-    dark: '#FFD60A',
+  'code-border': {
+    light: '#dce2e2',
+    dark: '#1c3246',
   },
-  'accent-purple': {
-    light: '#AF52DE',
-    dark: '#BF5AF2',
+  'token-comment': {
+    light: '#93a1a1',
+    dark: '#6c7d7d',
   },
-  'accent-pink': {
-    light: '#FF2D55',
-    dark: '#FF375F',
+  'token-punctuation': {
+    light: '#a3a3a3',
+    dark: '#a3a3a3',
   },
-  'social-facebook': {
-    light: '#1877f2',
-    dark: '#1877f2',
+  'token-property': {
+    light: '#10b981',
+    dark: '#10b981',
   },
-  'social-twitter': {
-    light: '#00ACED',
-    dark: '#00ACED',
+  'token-string': {
+    light: '#8b5cf6',
+    dark: '#f5d04e',
+  },
+  'token-import-name': {
+    light: '#2a3032',
+    dark: '#E2E4DD',
+  },
+  'token-operator': {
+    light: '#f59e0b',
+    dark: '#CB5A5B',
+  },
+  'token-operator-bgColor': {
+    light: '#f7f7f7',
+    dark: '#252638',
+  },
+  'token-tag': {
+    light: '#ff5779',
+    dark: '#E05D53',
+  },
+  'token-keyword': {
+    light: '#3b82f6',
+    dark: '#E05D53',
+  },
+  'token-keyword-const': {
+    light: '#3b82f6',
+    dark: '#94d2b2',
+  },
+  'token-variable': {
+    light: '#3b82f6',
+    dark: '#B093BF',
+  },
+  'token-attr-name': {
+    light: '#8b5cf6',
+    dark: '#94d2b2',
+  },
+  'token-attr-value': {
+    light: '#5ab980',
+    dark: '#DFC35F',
+  },
+  'token-function': {
+    light: '#ec4899',
+    dark: '#b8ea56',
+  },
+  'token-class': {
+    light: '#3b27da',
+    dark: '#2bbb2f',
+  },
+  'token-regex': {
+    light: '#ff531a',
+    dark: '#ff531a',
+  },
+  'line-highglight-color': {
+    light: '#db4c69',
+    dark: '#db4c69',
+  },
+  'line-highlight-bgColor': {
+    light: '#f5e5eb',
+    dark: '#f5e5eb',
   },
 };

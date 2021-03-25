@@ -4,6 +4,8 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 import prism from 'remark-prism';
+import codeExtra from 'remark-code-extra';
+import codeFrontmatter from 'remark-code-frontmatter';
 import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
@@ -58,7 +60,30 @@ export const getPostData = async (id: string): Promise<Post> => {
   const { content, data } = matter(fileContents);
 
   // Use remark to convert markdown into HTML string
-  const processedContent = await remark().use(html).use(prism).process(content);
+  const processedContent = await remark()
+    // .use(codeFrontmatter)
+    // .use(codeExtra, {
+    //   transform: (node) =>
+    //     node.frontmatter.before || node.frontmatter.after
+    //       ? {
+    //           before: node.frontmatter.before && [
+    //             {
+    //               type: 'text',
+    //               value: node.frontmatter.before,
+    //             },
+    //           ],
+    //           after: node.frontmatter.after && [
+    //             {
+    //               type: 'text',
+    //               value: node.frontmatter.after,
+    //             },
+    //           ],
+    //         }
+    //       : null,
+    // })
+    .use(html)
+    .use(prism)
+    .process(content);
   const contentHtml = processedContent.toString();
 
   const { text } = readingTime(content);

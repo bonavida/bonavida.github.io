@@ -45,8 +45,8 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         width: 100%;
       }
       .home__avatar {
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
         border: 3px solid var(--avatar-border);
         border-radius: 50%;
         padding: 8px;

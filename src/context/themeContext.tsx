@@ -1,9 +1,12 @@
 import { useState, useEffect, createContext } from 'react';
+/** Themes */
 import { COLORS } from '@themes/colors';
+/** Types */
+import { ColorMode } from '@customTypes/theme';
 
 export type ThemeContextProps = {
-  colorMode: string;
-  setColorMode: (value: string) => void;
+  colorMode: ColorMode;
+  setColorMode: (value: ColorMode) => void;
 };
 
 type ThemeProviderProps = {
@@ -25,7 +28,7 @@ export const ThemeProvider = ({
     rawSetColorMode(initialColorValue);
   }, []);
 
-  const setColorMode = (value: string) => {
+  const setColorMode = (value: ColorMode) => {
     const root = window.document.documentElement;
 
     // Update state
