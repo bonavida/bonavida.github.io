@@ -63,13 +63,8 @@ const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
   </>
 );
 
-export const getStaticPaths: GetStaticPaths = async ({
-  locales,
-  defaultLocale,
-}) => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const paths = getAllPostIds(locales);
-
-  console.log(defaultLocale);
 
   return {
     paths,
