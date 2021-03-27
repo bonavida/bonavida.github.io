@@ -1,0 +1,83 @@
+.postsContainer {
+  grid-column: span 2 / span 2;
+  transition: all 0.2s linear;
+}
+
+.postsTitle {
+  color: var(--text-primary);
+  margin-top: 1.2em;
+  margin-bottom: 1.2em;
+  transition: all 0.2s linear;
+}
+
+.posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s linear;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s linear;
+
+  &:not(:last-of-type) {
+    margin-bottom: 1.2em;
+  }
+}
+
+.postLink {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 5px;
+}
+
+.postMetadata {
+  display: flex;
+  align-items: center;
+}
+
+.postReadingTime {
+  display: flex;
+  align-items: center;
+
+  &:before {
+    content: '·';
+    color: var(--text-secondary);
+    font-size: 12px;
+    margin: 0 7px;
+  }
+}
+
+.postDate,
+.postReadingTimeText {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.postReadingTimeIcon {
+  color: var(--text-primary);
+  font-size: 11px;
+  margin-right: 7px;
+}
+
+@media (min-width: 768px) {
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 48px;
+    column-gap: 32px;
+  }
+
+  .post {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .postsTitle {
+    margin-top: 0;
+  }
+}
