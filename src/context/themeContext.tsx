@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
-/** Themes */
-import { COLORS } from '@themes/colors';
+/** Constants */
+import { COLORS, constants } from '@constants/index';
 /** Types */
 import { ColorMode } from '@customTypes/theme';
 
@@ -23,7 +23,7 @@ export const ThemeProvider = ({
   useEffect(() => {
     const root = window.document.documentElement;
     const initialColorValue = root.style.getPropertyValue(
-      '--initial-color-mode'
+      constants.INITIAL_COLOR_MODE_CSS_PROP
     );
     rawSetColorMode(initialColorValue);
   }, []);
@@ -35,13 +35,15 @@ export const ThemeProvider = ({
     rawSetColorMode(value);
 
     // Update localStorage
-    localStorage.setItem('color-mode', value);
+    localStorage.setItem(constants.COLOR_MODE_KEY, value);
 
     // Update each color
     Object.entries(COLORS).forEach(([name, colorByTheme]) => {
       const cssVarName = `--${name}`;
       root.style.setProperty(cssVarName, colorByTheme[value]);
     });
+
+    root.style.setProperty(constants.INITIAL_COLOR_MODE_CSS_PROP, value);
   };
 
   return (

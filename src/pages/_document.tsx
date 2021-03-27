@@ -1,4 +1,3 @@
-import React from 'react';
 import Document, {
   Html,
   Head,
@@ -8,7 +7,7 @@ import Document, {
   DocumentInitialProps,
 } from 'next/document';
 /** Themes */
-import { FallbackStyles, MagicScriptTag } from '@themes/InlineCssVariables';
+import { FallbackStyles, MagicScriptTag } from '@utils/InlineCssVariables';
 
 class MyDocument extends Document {
   static async getInitialProps(

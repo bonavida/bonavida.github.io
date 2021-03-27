@@ -10,10 +10,14 @@ import '@styles/global.scss';
 
 registerIcons();
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({
+  Component,
+  pageProps,
+  router: { pathname },
+}: AppProps): JSX.Element {
   return (
     <Providers>
-      <Layout>
+      <Layout isErrorPage={pathname === '/404'}>
         <Component {...pageProps} />
       </Layout>
     </Providers>

@@ -1,4 +1,3 @@
-import React from 'react';
 /** Components */
 import ActiveLink from '@components/ActiveLink';
 /** Styles */

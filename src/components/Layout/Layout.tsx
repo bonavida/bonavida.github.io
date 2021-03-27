@@ -1,19 +1,23 @@
-import React from 'react';
 /** Components */
 import Header from '@components/Header';
-import ThemeToggler from '@components/ThemeToggler';
+import SubHeader from '@components/SubHeader';
 /** Styles */
 import styles from './Layout.module.scss';
 
 type LayoutProps = {
+  isErrorPage: boolean;
   children: JSX.Element;
 };
 
-const Layout = ({ children }: LayoutProps): JSX.Element => (
+const Layout = ({ isErrorPage, children }: LayoutProps): JSX.Element => (
   <>
     <Header />
-    <ThemeToggler />
-    <div className={styles.content}>{children}</div>
+    {!isErrorPage && <SubHeader />}
+    <div
+      className={`${styles.content} ${isErrorPage ? styles.contentError : ''}`}
+    >
+      {children}
+    </div>
   </>
 );
 

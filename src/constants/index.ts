@@ -144,3 +144,10 @@ export const COLORS = {
     dark: '#f5e5eb',
   },
 };
+
+export const constants = {
+  DARK: 'dark',
+  LIGHT: 'light',
+  COLOR_MODE_KEY: 'color-mode',
+  INITIAL_COLOR_MODE_CSS_PROP: '--initial-color-mode',
+};

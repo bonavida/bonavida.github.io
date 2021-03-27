@@ -1,8 +1,9 @@
 const path = require('path');
+const withImages = require('next-images');
 
 const ghPages = process.env.DEPLOY_TARGET === 'gh-pages';
 
-module.exports = {
+module.exports = withImages({
   assetPrefix: ghPages ? '/bonavida.github.io/' : '',
   webpack: (config) => {
     config.module.rules.push({
@@ -14,4 +15,4 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-};
+});

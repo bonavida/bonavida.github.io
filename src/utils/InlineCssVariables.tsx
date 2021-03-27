@@ -4,15 +4,19 @@ It uses the users' prefers-color-scheme media query to inline CSS variables into
 */
 
 import Terser from 'terser';
-import { COLORS } from './colors';
+import { COLORS, constants } from '@constants/index';
 
 export const setColorsByTheme = (): void => {
   const colors = '🌈';
+  const colorModeKey = '🔑';
+  const colorModeCssProp = '⚡️';
+  const dark = '🌙';
+  const light = '☀️';
 
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersDarkFromMQ = mql.matches;
-  const preferedColorModeFromMQ = prefersDarkFromMQ ? 'dark' : 'light';
-  const persistedPreference = localStorage.getItem('color-mode');
+  const preferedColorModeFromMQ = prefersDarkFromMQ ? dark : light;
+  const persistedPreference = localStorage.getItem(colorModeKey);
   const hasUsedToggle = typeof persistedPreference === 'string';
 
   const colorMode = hasUsedToggle
@@ -27,19 +31,20 @@ export const setColorsByTheme = (): void => {
     root.style.setProperty(cssVarName, colorByTheme[colorMode]);
   });
 
-  root.style.setProperty('--initial-color-mode', colorMode);
+  root.style.setProperty(colorModeCssProp, colorMode);
 };
 
 export const MagicScriptTag = (): JSX.Element => {
-  const boundFn = String(setColorsByTheme).replace(
-    "'🌈'",
-    JSON.stringify(COLORS)
-  );
+  const boundFn = String(setColorsByTheme)
+    .replace("'🌈'", JSON.stringify(COLORS))
+    .replace('🔑', constants.COLOR_MODE_KEY)
+    .replace('⚡️', constants.INITIAL_COLOR_MODE_CSS_PROP)
+    .replace('🌙', constants.DARK)
+    .replace('☀️', constants.LIGHT);
 
   const calledFunction = `(${boundFn})()`;
   const minifiedFunction = Terser.minify(calledFunction);
 
-  // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{ __html: minifiedFunction.code }} />;
 };
 

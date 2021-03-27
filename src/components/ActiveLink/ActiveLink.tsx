@@ -17,19 +17,19 @@ const ActiveLink = ({
   activeClassName = '',
   ...props
 }: ActiveLinkProps): JSX.Element => {
-  const { asPath } = useRouter();
+  const { pathname } = useRouter();
 
   const isActive =
     typeof to === 'string'
-      ? to === asPath
-      : asPath === to.href || asPath === to.as;
+      ? to === pathname
+      : pathname === to.href || pathname === to.as;
 
   const activeLinkClassName = isActive
     ? `${className} ${activeClassName}`.trim()
     : className;
 
   return (
-    <CustomLink to={to} className={activeLinkClassName || null} {...props}>
+    <CustomLink to={to} className={activeLinkClassName} {...props}>
       {children}
     </CustomLink>
   );
