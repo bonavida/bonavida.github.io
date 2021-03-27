@@ -1,7 +1,6 @@
-import React from 'react';
 /** Components */
 import Header from '@components/Header';
-import ThemeToggler from '@components/ThemeToggler';
+import SubHeader from '@components/SubHeader';
 /** Styles */
 import styles from './Layout.module.scss';
 
@@ -12,7 +11,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps): JSX.Element => (
   <>
     <Header />
-    <ThemeToggler />
+    <SubHeader />
     <div className={styles.content}>{children}</div>
   </>
 );

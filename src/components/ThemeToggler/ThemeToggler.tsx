@@ -17,20 +17,18 @@ const ThemeToggler = (): JSX.Element => {
   }
 
   return (
-    <div className={styles.togglerWrapper}>
-      <label className={styles.toggler} htmlFor="theme_toggler">
-        <input
-          id="theme_toggler"
-          name="theme_toggler"
-          type="checkbox"
-          className={styles.togglerOriginal}
-          checked={colorMode === 'dark'}
-          onChange={handleChange}
-        />
-        <div className={styles.togglerFake} />
-        <div className={styles.togglerBackground} />
-      </label>
-    </div>
+    <label className={styles.toggler} htmlFor="theme_toggler">
+      <input
+        id="theme_toggler"
+        name="theme_toggler"
+        type="checkbox"
+        className={styles.togglerOriginal}
+        checked={colorMode === 'dark'}
+        onChange={handleChange}
+      />
+      <div className={styles.togglerFake} />
+      <div className={styles.togglerBackground} />
+    </label>
   );
 };
 

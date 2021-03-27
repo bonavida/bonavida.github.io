@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 /** Services */
 import { getAllPostIds, getPostData } from '@services/posts';
 /** Types */
@@ -22,6 +23,10 @@ const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
     </main>
 
     <style jsx>{`
+      p {
+        line-height: 28px;
+      }
+
       a {
         font-weight: 600;
       }
@@ -58,8 +63,13 @@ const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
   </>
 );
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
+export const getStaticPaths: GetStaticPaths = async ({
+  locales,
+  defaultLocale,
+}) => {
+  const paths = getAllPostIds(locales);
+
+  console.log(defaultLocale);
 
   return {
     paths,
@@ -69,12 +79,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({
   params: { id },
+  locale,
 }: PostParams) => {
-  const postData = await getPostData(id);
+  const postData = await getPostData(id, locale);
 
   return {
     props: {
       ...postData,
+      ...(await serverSideTranslations(locale, ['common', 'header'])),
     },
   };
 };

@@ -31,6 +31,10 @@ export const COLORS = {
     light: '#777777',
     dark: '#fefefe',
   },
+  'text-tertiary': {
+    light: '#777777',
+    dark: '#777777',
+  },
   'text-link': {
     light: '#d23669',
     dark: '#ffe100',

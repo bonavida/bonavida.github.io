@@ -6,6 +6,7 @@ interface Params extends ParsedUrlQuery {
 
 export type PostParams = {
   params: Params;
+  locale: string;
 };
 
 export type PostMetadata = {

@@ -1,11 +1,3 @@
-.togglerWrapper {
-  width: 100%;
-  max-width: 83.333%;
-  margin: 72px auto 0;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .toggler {
   display: inline-block;
   width: 60px;
@@ -89,12 +81,4 @@
   border: 2px solid var(--border-color-toggler);
   transition: 0.3s;
   background-color: var(--color-toggler);
-}
-
-@media (min-width: 768px) {
-  .togglerWrapper {
-    max-width: 100%;
-    margin: 72px 0 0;
-    padding-right: 48px;
-  }
 }

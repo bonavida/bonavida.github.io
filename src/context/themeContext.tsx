@@ -42,6 +42,8 @@ export const ThemeProvider = ({
       const cssVarName = `--${name}`;
       root.style.setProperty(cssVarName, colorByTheme[value]);
     });
+
+    root.style.setProperty('--initial-color-mode', value);
   };
 
   return (

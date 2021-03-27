@@ -5,6 +5,7 @@ import CustomLink from '@components/CustomLink';
 
 interface ActiveLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string | { href: string; as: string }; // Allow both static and dynamic routes
+  locale?: string;
   children: React.ReactNode;
   className?: string;
   activeClassName?: string;
@@ -12,6 +13,7 @@ interface ActiveLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 
 const ActiveLink = ({
   to,
+  locale,
   children,
   className = '',
   activeClassName = '',
@@ -29,7 +31,12 @@ const ActiveLink = ({
     : className;
 
   return (
-    <CustomLink to={to} className={activeLinkClassName || null} {...props}>
+    <CustomLink
+      to={to}
+      locale={locale}
+      className={activeLinkClassName || null}
+      {...props}
+    >
       {children}
     </CustomLink>
   );

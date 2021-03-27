@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 /** Components */
 import HomePosts from '@components/HomePosts';
 /** Types */
@@ -108,12 +109,13 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
   </div>
 );
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const allPostsData = getSortedPostsData(locale);
 
   return {
     props: {
       posts: allPostsData,
+      ...(await serverSideTranslations(locale, ['common', 'home', 'header'])),
     },
   };
 };

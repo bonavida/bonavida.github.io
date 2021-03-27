@@ -12,15 +12,15 @@ import { PostMetadata, Post, PostParams } from '@customTypes/post';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'posts');
 
-export const getSortedPostsData = (): PostMetadata[] => {
+export const getSortedPostsData = (locale: string): PostMetadata[] => {
   // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(`${postsDirectory}/${locale}`);
   const allPostsData: PostMetadata[] = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(`${postsDirectory}/${locale}`, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
@@ -42,18 +42,24 @@ export const getSortedPostsData = (): PostMetadata[] => {
   );
 };
 
-export const getAllPostIds = (): PostParams[] => {
-  const fileNames = fs.readdirSync(postsDirectory);
+export const getAllPostIds = (locales: string[]): PostParams[] =>
+  locales.reduce((acc, locale) => {
+    const fileNames = fs.readdirSync(`${postsDirectory}/${locale}`);
+    const paths = fileNames.map((fileName) => ({
+      params: {
+        id: fileName.replace(/\.md$/, ''),
+      },
+      locale,
+    }));
+    acc.push(...paths);
+    return acc;
+  }, []);
 
-  return fileNames.map((fileName) => ({
-    params: {
-      id: fileName.replace(/\.md$/, ''),
-    },
-  }));
-};
-
-export const getPostData = async (id: string): Promise<Post> => {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export const getPostData = async (
+  id: string,
+  locale: string
+): Promise<Post> => {
+  const fullPath = path.join(`${postsDirectory}/${locale}`, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
