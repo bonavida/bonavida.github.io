@@ -150,4 +150,9 @@ export const constants = {
   LIGHT: 'light',
   COLOR_MODE_KEY: 'color-mode',
   INITIAL_COLOR_MODE_CSS_PROP: '--initial-color-mode',
+  DEFAULT_LANG: 'en',
+  SUPPORTED_LANGS: {
+    es: 'Spanish',
+    en: 'English',
+  },
 };

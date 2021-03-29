@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from 'querystring';
 
 interface Params extends ParsedUrlQuery {
-  id: string;
+  slug: string[];
 }
 
 export type PostParams = {
@@ -12,10 +12,11 @@ export type PostMetadata = {
   id: string;
   title?: string;
   date?: string;
-  readingTime: string;
 };
 
 export type Post = {
   content: string;
   readingTime: string;
+  lang: string;
+  otherLangs: string[];
 } & PostMetadata;

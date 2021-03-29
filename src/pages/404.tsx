@@ -23,6 +23,7 @@ const ErrorPage = (): JSX.Element => (
         height: 100%;
         background-color: #101827;
       }
+
       .error__background {
         width: 100%;
         height: 100%;
@@ -30,6 +31,7 @@ const ErrorPage = (): JSX.Element => (
         background-size: cover;
         opacity: 0.6;
       }
+
       .error__wrapper {
         position: absolute;
         top: 35%;
@@ -39,17 +41,40 @@ const ErrorPage = (): JSX.Element => (
         flex-direction: column;
         align-items: center;
       }
+
       .error__status {
         color: #fbfbfc;
-        font-size: 148px;
+        font-size: 92px;
         font-weight: bold;
       }
+
       .error__text {
+        min-width: 300px;
         max-width: 900px;
         color: #fbfbfc;
-        font-size: 48px;
+        font-size: 28px;
         margin: 0;
         text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        .error__status {
+          font-size: 116px;
+        }
+
+        .error__text {
+          font-size: 36px;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .error__status {
+          font-size: 148px;
+        }
+
+        .error__text {
+          font-size: 48px;
+        }
       }
     `}</style>
   </>

@@ -1,6 +1,6 @@
 ---
-title: "This is just a post made for testing purposes"
-date: "2021-03-15"
+title: 'This is just a post made for testing purposes'
+date: '2021-03-15'
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non dui at mauris mattis consectetur ac cursus eros. Ut semper vel massa rhoncus scelerisque. Proin fringilla metus vitae pharetra hendrerit. Quisque volutpat ante ut quam ornare rhoncus. Sed augue lorem, pulvinar ac fringilla ut, consectetur sit amet elit. Praesent vestibulum semper tincidunt. Aliquam tristique iaculis nibh at faucibus. Mauris a vestibulum sem. Nullam aliquam urna vel elit euismod convallis.

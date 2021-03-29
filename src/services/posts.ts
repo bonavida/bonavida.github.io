@@ -9,18 +9,21 @@ import codeFrontmatter from 'remark-code-frontmatter';
 import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
+/** Constants */
+import { constants } from '@constants/index';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'posts');
+const defaultPostsDirectory = path.join(postsDirectory, constants.DEFAULT_LANG);
 
 export const getSortedPostsData = (): PostMetadata[] => {
-  // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory);
+  // Get file names under /posts/{defaultLang}
+  const fileNames = fs.readdirSync(defaultPostsDirectory);
   const allPostsData: PostMetadata[] = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
     const id = fileName.replace(/\.md$/, '');
 
     // Read markdown file as string
-    const fullPath = path.join(postsDirectory, fileName);
+    const fullPath = path.join(defaultPostsDirectory, fileName);
     const fileContents = fs.readFileSync(fullPath, 'utf8');
 
     // Use gray-matter to parse the post metadata section
@@ -43,17 +46,42 @@ export const getSortedPostsData = (): PostMetadata[] => {
 };
 
 export const getAllPostIds = (): PostParams[] => {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames = fs.readdirSync(defaultPostsDirectory);
+  const langs = fs
+    .readdirSync(postsDirectory)
+    .filter((lang) => lang !== constants.DEFAULT_LANG);
 
-  return fileNames.map((fileName) => ({
-    params: {
-      id: fileName.replace(/\.md$/, ''),
-    },
-  }));
+  return fileNames
+    .map((fileName) => {
+      const id = fileName.replace(/\.md$/, '');
+      const langPaths = langs.map((lang) => ({
+        params: {
+          slug: [lang, id],
+        },
+      }));
+
+      return [
+        {
+          params: {
+            slug: [id],
+          },
+        },
+        ...langPaths,
+      ];
+    })
+    .flat();
 };
 
-export const getPostData = async (id: string): Promise<Post> => {
-  const fullPath = path.join(postsDirectory, `${id}.md`);
+export const getPostData = async (
+  lang: string = constants.DEFAULT_LANG,
+  id: string
+): Promise<Post> => {
+  // Get content from /posts/{defaultLang | lang}/{id}.md file
+  const fullPostsDirectory =
+    lang === constants.DEFAULT_LANG
+      ? defaultPostsDirectory
+      : path.join(postsDirectory, lang);
+  const fullPath = path.join(fullPostsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
@@ -88,11 +116,16 @@ export const getPostData = async (id: string): Promise<Post> => {
 
   const { text } = readingTime(content);
 
-  // Combine the data with the id and contentHtml
+  const otherLangs = fs
+    .readdirSync(postsDirectory)
+    .filter((language) => language !== constants.DEFAULT_LANG);
+
   return {
     id,
     content: contentHtml,
     readingTime: text,
+    lang,
+    otherLangs,
     ...data,
   };
 };

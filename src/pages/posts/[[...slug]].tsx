@@ -1,4 +1,6 @@
 import Head from 'next/head';
+/** Components */
+import PostTranslations from '@components/PostTranslations';
 /** Services */
 import { getAllPostIds, getPostData } from '@services/posts';
 /** Types */
@@ -7,7 +9,14 @@ import { Post, PostParams } from '@customTypes/post';
 /** Utils */
 import { getFormattedDate } from '@utils/date';
 
-const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
+const PostTemplate = ({
+  id,
+  content,
+  date,
+  title,
+  lang,
+  otherLangs,
+}: Post): JSX.Element => (
   <>
     <Head>
       <title>{title} | Diego Bonavida</title>
@@ -18,6 +27,7 @@ const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
     </header>
     <main className="post__content">
       <span className="post__date">{getFormattedDate(date)}</span>
+      <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
 
@@ -35,7 +45,7 @@ const PostTemplate = ({ content, date, title }: Post): JSX.Element => (
 
       .post__date {
         display: block;
-        margin: 30px 0 40px;
+        margin: 20px 0 40px;
         font-size: 14px;
         color: #8aa0a0;
       }
@@ -68,9 +78,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({
-  params: { id },
+  params: { slug },
 }: PostParams) => {
-  const postData = await getPostData(id);
+  // The slug param can have one or two parameters.
+  // One parameter -> [id]
+  // Two parameters -> [slug, id]
+  // We need to destructure the array in a specific way to get each parameter right
+  const [lang, id] = slug.length === 1 ? [undefined, slug[0]] : slug;
+
+  const postData = await getPostData(lang, id);
 
   return {
     props: {
