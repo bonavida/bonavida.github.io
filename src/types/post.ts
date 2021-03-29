@@ -12,11 +12,11 @@ export type PostMetadata = {
   id: string;
   title?: string;
   date?: string;
+  readingTime: string;
 };
 
 export type Post = {
   content: string;
-  readingTime: string;
   lang: string;
   otherLangs: string[];
 } & PostMetadata;
