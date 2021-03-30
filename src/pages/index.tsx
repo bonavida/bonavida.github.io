@@ -78,10 +78,12 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         font-size: 36px;
         font-weight: 700;
         line-height: 40px;
+        transition: all 0.2s linear;
       }
 
       p {
         color: var(--text-primary);
+        transition: all 0.2s linear;
       }
 
       @media (min-width: 768px) {
