@@ -4,7 +4,11 @@ export const COLORS = {
     dark: '#101827',
   },
   'bg-header': {
-    light: '#ffffff',
+    light: 'rgba(255, 255, 255, 0.85)',
+    dark: 'rgba(29, 39, 56, 0.8)',
+  },
+  'bg-header-rgb': {
+    light: 'rgb(255 255 255 / 20%)',
     dark: '#172133',
   },
   'border-header': {
@@ -30,6 +34,10 @@ export const COLORS = {
   'text-secondary': {
     light: '#777777',
     dark: '#fefefe',
+  },
+  'text-terciary': {
+    light: '#6d7d84',
+    dark: '#a9b4b9',
   },
   'text-link': {
     light: '#d23669',
@@ -150,9 +158,14 @@ export const constants = {
   LIGHT: 'light',
   COLOR_MODE_KEY: 'color-mode',
   INITIAL_COLOR_MODE_CSS_PROP: '--initial-color-mode',
+  ERROR_PAGE_PATHNAME: '/404',
   DEFAULT_LANG: 'en',
   SUPPORTED_LANGS: {
     es: 'Spanish',
     en: 'English',
+  },
+  LOCALE_BY_LANG: {
+    en: 'en-US',
+    es: 'es-ES',
   },
 };

@@ -6,7 +6,7 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from 'next/document';
-/** Themes */
+/** Utils */
 import { FallbackStyles, MagicScriptTag } from '@utils/InlineCssVariables';
 
 class MyDocument extends Document {
@@ -23,6 +23,7 @@ class MyDocument extends Document {
         <Head>
           <FallbackStyles />
           <MagicScriptTag />
+          <link rel="icon" href="/favicon.ico?v=3" />
         </Head>
 
         <body>

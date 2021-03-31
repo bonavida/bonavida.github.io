@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 /** Components */
 import PostTranslations from '@components/PostTranslations';
@@ -16,57 +17,54 @@ const PostTemplate = ({
   title,
   lang,
   otherLangs,
-}: Post): JSX.Element => (
-  <>
-    <Head>
-      <title>{title} | Diego Bonavida</title>
-    </Head>
+}: Post): JSX.Element => {
+  const [isMounted, setMounted] = useState<boolean>(false);
 
-    <header className="post__header">
-      <h1 className="post__title">{title}</h1>
-    </header>
-    <main className="post__content">
-      <span className="post__date">{getFormattedDate(date)}</span>
-      <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </main>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-    <style jsx>{`
-      a {
-        font-weight: 600;
-      }
+  return (
+    <>
+      <Head>
+        <title>{title} | Diego Bonavida</title>
+      </Head>
 
-      .post__header {
-        width: 100%;
-        max-width: 1300px;
-        margin: 0 auto;
-        text-align: center;
-      }
+      <main className="post__content">
+        <h1 className="post__title">{title}</h1>
+        {isMounted && (
+          <span className="post__date">{getFormattedDate({ date, lang })}</span>
+        )}
+        <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+      </main>
 
-      .post__date {
-        display: block;
-        margin: 20px 0 40px;
-        font-size: 14px;
-        color: #8aa0a0;
-      }
+      <style jsx>{`
+        .post__date {
+          display: block;
+          margin: 20px 0 40px;
+          font-size: 14px;
+          color: #8aa0a0;
+        }
 
-      .post__title {
-        color: var(--text-primary);
-        font-size: 42px;
-        line-height: 45px;
-        transition: all 0.2s linear;
-      }
+        .post__title {
+          color: var(--text-primary);
+          font-size: 42px;
+          line-height: 45px;
+          transition: all 0.2s linear;
+        }
 
-      .post__content {
-        width: 100%;
-        max-width: 1024px;
-        margin: 0 auto;
-        color: var(--text-primary);
-        transition: all 0.2s linear;
-      }
-    `}</style>
-  </>
-);
+        .post__content {
+          width: 100%;
+          max-width: 1024px;
+          margin: 0 auto;
+          color: var(--text-primary);
+          transition: all 0.2s linear;
+        }
+      `}</style>
+    </>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostIds();

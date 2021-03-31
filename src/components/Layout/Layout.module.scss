@@ -1,13 +1,13 @@
 .content {
   width: 100%;
   max-width: 83.333%;
-  margin: 0 auto;
+  margin: 0 auto 60px;
   padding-top: 20px;
   transition: all 0.2s linear;
 }
 
 .contentError {
-  height: calc(100vh - 54px);
+  height: calc(100vh - 55px);
   max-width: 100%;
   padding-top: 0;
   margin: 0;

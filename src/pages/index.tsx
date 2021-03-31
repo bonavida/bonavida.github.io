@@ -15,7 +15,6 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
   <div>
     <Head>
       <title>Diego Bonavida</title>
-      <link rel="icon" href="/favicon.ico?v=1" />
     </Head>
 
     <main className="home">
@@ -83,6 +82,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
 
       p {
         color: var(--text-primary);
+        font-size: 16px;
         transition: all 0.2s linear;
       }
 
@@ -95,6 +95,10 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
 
         .home__content {
           margin-top: 48px;
+        }
+
+        p {
+          font-size: 18px;
         }
       }
 

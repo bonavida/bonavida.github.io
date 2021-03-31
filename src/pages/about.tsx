@@ -30,14 +30,14 @@ const About = (): JSX.Element => (
       .about {
         width: 100%;
         max-width: 700px;
-        margin: 25px auto;
+        margin: 0px auto 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
       }
       .about__avatar {
-        width: 110px;
-        height: 110px;
+        width: 125px;
+        height: 125px;
         border: 3px solid var(--avatar-border);
         border-radius: 50%;
         padding: 8px;

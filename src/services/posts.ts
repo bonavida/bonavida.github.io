@@ -112,6 +112,7 @@ export const getPostData = async (
     .use(html)
     .use(prism)
     .process(content);
+
   const contentHtml = processedContent.toString();
 
   const { text } = readingTime(content);

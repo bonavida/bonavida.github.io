@@ -24,6 +24,7 @@ const PostTranslations = ({
         </span>
         {otherLangs.map((otherLang) => (
           <CustomLink
+            key={`${otherLang}_translation`}
             to={`/posts/${otherLang}/${id}`}
             className={styles.translatedPostLink}
           >
@@ -39,7 +40,7 @@ const PostTranslations = ({
         <CustomLink to={`/posts/${id}`} className={styles.translatedPostLink}>
           here
         </CustomLink>
-        .
+        <span className={styles.translatedPostsText}>.</span>
       </>
     )}
   </div>

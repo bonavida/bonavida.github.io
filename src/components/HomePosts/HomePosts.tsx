@@ -22,7 +22,9 @@ const HomePosts = ({ posts }: HomePostsProps): JSX.Element => (
             {title}
           </CustomLink>
           <div className={styles.postMetadata}>
-            <small className={styles.postDate}>{getFormattedDate(date)}</small>
+            <small className={styles.postDate}>
+              {getFormattedDate({ date })}
+            </small>
             <div className={styles.postReadingTime}>
               <FontAwesomeIcon
                 icon="glasses"
