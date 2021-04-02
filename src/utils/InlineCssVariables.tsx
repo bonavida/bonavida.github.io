@@ -4,7 +4,8 @@ It uses the users' prefers-color-scheme media query to inline CSS variables into
 */
 
 import Terser from 'terser';
-import { COLORS, constants } from '@constants/index';
+import Constants from '@constants/common';
+import COLORS from '@constants/colors';
 
 export const setColorsByTheme = (): void => {
   const colors = '🌈';
@@ -37,10 +38,10 @@ export const setColorsByTheme = (): void => {
 export const MagicScriptTag = (): JSX.Element => {
   const boundFn = String(setColorsByTheme)
     .replace("'🌈'", JSON.stringify(COLORS))
-    .replace('🔑', constants.COLOR_MODE_KEY)
-    .replace('⚡️', constants.INITIAL_COLOR_MODE_CSS_PROP)
-    .replace('🌙', constants.DARK)
-    .replace('☀️', constants.LIGHT);
+    .replace('🔑', Constants.COLOR_MODE_KEY)
+    .replace('⚡️', Constants.INITIAL_COLOR_MODE_CSS_PROP)
+    .replace('🌙', Constants.DARK)
+    .replace('☀️', Constants.LIGHT);
 
   const calledFunction = `(${boundFn})()`;
   const minifiedFunction = Terser.minify(calledFunction);

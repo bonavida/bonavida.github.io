@@ -56,7 +56,7 @@ const PostTemplate = ({
 
         .post__content {
           width: 100%;
-          max-width: 1024px;
+          max-width: 900px;
           margin: 0 auto;
           color: var(--text-primary);
           transition: all 0.2s linear;

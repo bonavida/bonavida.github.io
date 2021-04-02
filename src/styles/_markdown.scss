@@ -4,9 +4,6 @@
 
 pre[class*='language-'],
 code[class*='language-'] {
-  color: var(--code-color);
-  font-size: 16px;
-  font-weight: 500;
   text-shadow: none;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
@@ -22,7 +19,7 @@ code[class*='language-'] {
 
   & * {
     color: var(--code-color);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     transition: all 0.2s linear;
   }
@@ -50,7 +47,7 @@ pre[class*='language-'] {
   border-radius: 0.3em;
   color: var(--code-inline-color);
   background: var(--code-inline-bgColor);
-  font-size: 16px;
+  font-size: 14px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   transition: all 0.2s linear;

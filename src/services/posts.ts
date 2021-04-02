@@ -10,10 +10,10 @@ import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
 /** Constants */
-import { constants } from '@constants/index';
+import Constants from '@constants/common';
 
 const postsDirectory = path.join(process.cwd(), 'src', 'posts');
-const defaultPostsDirectory = path.join(postsDirectory, constants.DEFAULT_LANG);
+const defaultPostsDirectory = path.join(postsDirectory, Constants.DEFAULT_LANG);
 
 export const getSortedPostsData = (): PostMetadata[] => {
   // Get file names under /posts/{defaultLang}
@@ -49,7 +49,7 @@ export const getAllPostIds = (): PostParams[] => {
   const fileNames = fs.readdirSync(defaultPostsDirectory);
   const langs = fs
     .readdirSync(postsDirectory)
-    .filter((lang) => lang !== constants.DEFAULT_LANG);
+    .filter((lang) => lang !== Constants.DEFAULT_LANG);
 
   return fileNames
     .map((fileName) => {
@@ -73,12 +73,12 @@ export const getAllPostIds = (): PostParams[] => {
 };
 
 export const getPostData = async (
-  lang: string = constants.DEFAULT_LANG,
+  lang: string = Constants.DEFAULT_LANG,
   id: string
 ): Promise<Post> => {
   // Get content from /posts/{defaultLang | lang}/{id}.md file
   const fullPostsDirectory =
-    lang === constants.DEFAULT_LANG
+    lang === Constants.DEFAULT_LANG
       ? defaultPostsDirectory
       : path.join(postsDirectory, lang);
   const fullPath = path.join(fullPostsDirectory, `${id}.md`);
@@ -119,7 +119,7 @@ export const getPostData = async (
 
   const otherLangs = fs
     .readdirSync(postsDirectory)
-    .filter((language) => language !== constants.DEFAULT_LANG);
+    .filter((language) => language !== Constants.DEFAULT_LANG);
 
   return {
     id,

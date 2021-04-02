@@ -1,7 +1,7 @@
 /** Components */
 import CustomLink from '@components/CustomLink';
 /** Constants */
-import { constants } from '@constants/index';
+import Constants from '@constants/common';
 /** Styles */
 import styles from './PostTranslations.module.scss';
 
@@ -17,7 +17,7 @@ const PostTranslations = ({
   otherLangs,
 }: PostTranslationsProps): JSX.Element => (
   <div className={styles.translatedPosts}>
-    {lang === constants.DEFAULT_LANG ? (
+    {lang === Constants.DEFAULT_LANG ? (
       <>
         <span className={styles.translatedPostsText}>
           This post has been translated into:
@@ -28,7 +28,7 @@ const PostTranslations = ({
             to={`/posts/${otherLang}/${id}`}
             className={styles.translatedPostLink}
           >
-            {constants.SUPPORTED_LANGS[otherLang]}
+            {Constants.SUPPORTED_LANGS[otherLang]}
           </CustomLink>
         ))}
       </>

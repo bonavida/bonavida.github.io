@@ -20,9 +20,18 @@ a {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s linear;
+
+  &:focus,
+  &:active,
+  &:hover {
+    outline: 0;
+  }
 }
 
 p {
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.4;
   margin-block-end: 20px;
   margin-bottom: 0;
   margin-top: 20px;
@@ -30,6 +39,7 @@ p {
   word-break: break-word;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
+  transition: all 0.2s linear;
 }
 
 h1,

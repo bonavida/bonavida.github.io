@@ -1,4 +1,4 @@
-import { constants } from '@constants/index';
+import Constants from '@constants/common';
 
 interface DateParams {
   date: string;
@@ -13,6 +13,6 @@ export const getFormattedDate = ({
     month: 'long',
     year: 'numeric',
   },
-  lang = constants.DEFAULT_LANG,
+  lang = Constants.DEFAULT_LANG,
 }: DateParams): string =>
-  new Date(date).toLocaleDateString(constants.LOCALE_BY_LANG[lang], options);
+  new Date(date).toLocaleDateString(Constants.LOCALE_BY_LANG[lang], options);

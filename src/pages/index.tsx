@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import Link from 'next/link';
 /** Components */
 import HomePosts from '@components/HomePosts';
+import SocialMedia from '@components/SocialMedia';
 /** Types */
 import { GetStaticProps } from 'next';
 import { PostMetadata } from '@customTypes/post';
@@ -24,16 +26,25 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
       <div className="home__content">
         <div className="home__author">
           <h1 className="home__name">Diego Bonavida</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-            elementum sollicitudin lacinia. Nam pulvinar mi in risus ullamcorper
-            sollicitudin. Nullam condimentum tortor tempus, malesuada sem ut,
-            luctus tellus.
-          </p>
-          <p>
-            Nullam lacinia elit nec arcu lacinia, vel posuere orci elementum.
-            Maecenas felis nulla, aliquam in leo at, placerat lacinia velit.
-          </p>
+          <section>
+            <p>
+              Hey, I&apos;m Diego and I&apos;m a frontend developer. I&apos;ve
+              built this small place just so I can post about things I find
+              interesting and some other discoveries I make.
+            </p>
+            <p>
+              My interests in software are JavaScript, TypeScript, React,
+              Next.js & Vue, among others.
+            </p>
+          </section>
+          <section>
+            <Link href="/about">
+              <a className="home__about">Learn more about me</a>
+            </Link>
+          </section>
+          <section>
+            <SocialMedia />
+          </section>
         </div>
         <HomePosts posts={posts} />
       </div>
@@ -43,6 +54,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
       .home {
         width: 100%;
       }
+
       .home__avatar {
         width: 110px;
         height: 110px;
@@ -80,10 +92,24 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         transition: all 0.2s linear;
       }
 
-      p {
-        color: var(--text-primary);
-        font-size: 16px;
-        transition: all 0.2s linear;
+      .home__about {
+        font-weight: 500;
+        line-height: 1.2em;
+      }
+
+      .home__about::after {
+        content: '→';
+        margin-left: 8px;
+        vertical-align: middle;
+        transition: all 0.3s ease;
+      }
+
+      .home__about:hover::after {
+        margin-left: 10px;
+      }
+
+      section:not(:first-of-type) {
+        margin-top: 20px;
       }
 
       @media (min-width: 768px) {
@@ -95,10 +121,6 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
 
         .home__content {
           margin-top: 48px;
-        }
-
-        p {
-          font-size: 18px;
         }
       }
 

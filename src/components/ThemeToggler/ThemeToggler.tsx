@@ -2,7 +2,7 @@ import { useContext } from 'react';
 /** Context */
 import { ThemeContext } from '@context/themeContext';
 /** Constants */
-import { constants } from '@constants/index';
+import Constants from '@constants/common';
 /** Types */
 import { ColorMode } from '@customTypes/theme';
 /** Styles */
@@ -13,8 +13,8 @@ const ThemeToggler = (): JSX.Element => {
 
   const handleChange = ({ target: { checked } }) => {
     const checkedColorMode = (checked
-      ? constants.DARK
-      : constants.LIGHT) as ColorMode;
+      ? Constants.DARK
+      : Constants.LIGHT) as ColorMode;
 
     setColorMode(checkedColorMode);
   };
@@ -30,7 +30,7 @@ const ThemeToggler = (): JSX.Element => {
         name="theme_toggler"
         type="checkbox"
         className={styles.togglerOriginal}
-        checked={colorMode === constants.DARK}
+        checked={colorMode === Constants.DARK}
         onChange={handleChange}
       />
       <div className={styles.togglerFake} />

@@ -1,11 +1,11 @@
-export const COLORS = {
+export default {
   'bg-primary': {
     light: '#FCFCFC',
     dark: '#101827',
   },
   'bg-header': {
-    light: 'rgba(255, 255, 255, 0.85)',
-    dark: 'rgba(29, 39, 56, 0.8)',
+    light: 'rgba(255, 255, 255, 0.7)',
+    dark: 'rgba(29, 39, 56, 0.75)',
   },
   'bg-header-rgb': {
     light: 'rgb(255 255 255 / 20%)',
@@ -151,21 +151,12 @@ export const COLORS = {
     light: '#f5e5eb',
     dark: '#f5e5eb',
   },
-};
-
-export const constants = {
-  DARK: 'dark',
-  LIGHT: 'light',
-  COLOR_MODE_KEY: 'color-mode',
-  INITIAL_COLOR_MODE_CSS_PROP: '--initial-color-mode',
-  ERROR_PAGE_PATHNAME: '/404',
-  DEFAULT_LANG: 'en',
-  SUPPORTED_LANGS: {
-    es: 'Spanish',
-    en: 'English',
+  'social-lastfm': {
+    light: '#ba0000',
+    dark: '#ef0505',
   },
-  LOCALE_BY_LANG: {
-    en: 'en-US',
-    es: 'es-ES',
+  'social-twitter': {
+    light: '#1da1f2',
+    dark: '#1da1f2',
   },
 };

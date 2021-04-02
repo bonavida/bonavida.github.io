@@ -52,18 +52,21 @@
   }
 }
 
-.postDate,
-.postReadingTimeText {
+.postDate {
   color: var(--text-terciary);
-  font-size: 14px;
+  font-size: 12px;
+  transition: all 0.2s linear;
+}
+
+.postReadingTimeText,
+.postReadingTimeIcon {
+  color: var(--text-secondary);
+  font-size: 12px;
   transition: all 0.2s linear;
 }
 
 .postReadingTimeIcon {
-  color: var(--text-secondary);
-  font-size: 12px;
   margin-right: 7px;
-  transition: all 0.2s linear;
 }
 
 @media (min-width: 768px) {
