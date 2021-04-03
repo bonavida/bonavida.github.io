@@ -23,7 +23,6 @@ class MyDocument extends Document {
         <Head>
           <FallbackStyles />
           <MagicScriptTag />
-          <link rel="icon" href="/favicon.ico?v=3" />
         </Head>
 
         <body>

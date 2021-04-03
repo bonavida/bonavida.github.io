@@ -18,7 +18,10 @@ function MyApp({
 }: AppProps): JSX.Element {
   return (
     <Providers>
-      <Layout isErrorPage={pathname === Constants.ERROR_PAGE_PATHNAME}>
+      <Layout
+        meta={pageProps.meta}
+        isErrorPage={pathname === Constants.ERROR_PAGE_PATHNAME}
+      >
         <Component {...pageProps} />
       </Layout>
     </Providers>

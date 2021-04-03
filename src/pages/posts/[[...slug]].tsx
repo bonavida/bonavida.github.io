@@ -84,10 +84,17 @@ export const getStaticProps: GetStaticProps = async ({
   // We need to destructure the array in a specific way to get each parameter right
   const [lang, id] = slug.length === 1 ? [undefined, slug[0]] : slug;
 
-  const postData = await getPostData(lang, id);
+  const { title, description, ...postData } = await getPostData(lang, id);
+
+  const meta = {
+    title: `${title} | Diego Bonavida`,
+    description,
+  };
 
   return {
     props: {
+      meta,
+      title,
       ...postData,
     },
   };

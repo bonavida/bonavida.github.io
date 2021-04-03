@@ -1,4 +1,6 @@
 import Head from 'next/head';
+/** Types */
+import { GetStaticProps } from 'next';
 
 const About = (): JSX.Element => (
   <div>
@@ -89,5 +91,20 @@ const About = (): JSX.Element => (
     `}</style>
   </div>
 );
+
+export const getStaticProps: GetStaticProps = async () => {
+  const meta = {
+    title: 'Diego Bonavida',
+    description:
+      // eslint-disable-next-line max-len
+      "Hey, I'm Diego and I'm a frontend developer. I've built this small place just so I can post about things I find interesting and some other discoveries I make.",
+  };
+
+  return {
+    props: {
+      meta,
+    },
+  };
+};
 
 export default About;

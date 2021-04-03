@@ -1,6 +1,7 @@
 ---
 title: 'Construye un fantástico blog con Next.js'
 date: '2021-03-13'
+description: 'Esto simplemente es una descripción corta para este post en concreto.'
 ---
 
 Vamos a construir un fantástico blog en **Next.js** usando `Markdown`.

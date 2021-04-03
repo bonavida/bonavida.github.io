@@ -138,9 +138,16 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
 
 export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
+  const meta = {
+    title: 'Diego Bonavida',
+    description:
+      // eslint-disable-next-line max-len
+      "Hey, I'm Diego and I'm a frontend developer. I've built this small place just so I can post about things I find interesting and some other discoveries I make.",
+  };
 
   return {
     props: {
+      meta,
       posts: allPostsData,
     },
   };

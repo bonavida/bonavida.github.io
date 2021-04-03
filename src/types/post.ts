@@ -11,6 +11,7 @@ export type PostParams = {
 export type PostMetadata = {
   id: string;
   title?: string;
+  description?: string;
   date?: string;
   readingTime: string;
 };
@@ -20,3 +21,9 @@ export type Post = {
   lang: string;
   otherLangs: string[];
 } & PostMetadata;
+
+export interface MetaProps {
+  title: string;
+  description: string;
+  cardImage: string;
+}

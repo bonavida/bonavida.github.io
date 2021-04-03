@@ -1,4 +1,6 @@
 import Head from 'next/head';
+/** Types */
+import { GetStaticProps } from 'next';
 /** Images */
 import ErrorImage from '@public/404.webp';
 
@@ -79,5 +81,18 @@ const ErrorPage = (): JSX.Element => (
     `}</style>
   </>
 );
+
+export const getStaticProps: GetStaticProps = async () => {
+  const meta = {
+    title: 'Page not found | Diego Bonavida',
+    description: 'This is not the page you are looking for.',
+  };
+
+  return {
+    props: {
+      meta,
+    },
+  };
+};
 
 export default ErrorPage;
