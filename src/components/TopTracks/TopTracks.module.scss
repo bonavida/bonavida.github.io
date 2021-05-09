@@ -1,0 +1,34 @@
+.topTrack {
+  display: flex;
+  align-items: center;
+
+  &:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+}
+
+.topTrackCover {
+  max-width: 100%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.topTrackMetadata {
+  display: flex;
+  flex-direction: column;
+}
+
+.topTrackName {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.topTrackArtist {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+}
