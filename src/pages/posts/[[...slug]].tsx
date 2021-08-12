@@ -51,7 +51,7 @@ const PostTemplate = ({
           color: var(--text-primary);
           font-size: 42px;
           line-height: 45px;
-          transition: all 0.2s linear;
+          transition: color 0.2s linear;
         }
 
         .post__content {
@@ -59,7 +59,7 @@ const PostTemplate = ({
           max-width: 900px;
           margin: 0 auto;
           color: var(--text-primary);
-          transition: all 0.2s linear;
+          transition: color 0.2s linear;
         }
       `}</style>
     </>

@@ -40,8 +40,7 @@ export const ThemeProvider = ({
 
     // Update each color
     Object.entries(COLORS).forEach(([name, colorByTheme]) => {
-      const cssVarName = `--${name}`;
-      root.style.setProperty(cssVarName, colorByTheme[value]);
+      root.style.setProperty(`--${name}`, colorByTheme[value]);
     });
 
     root.style.setProperty(Constants.INITIAL_COLOR_MODE_CSS_PROP, value);

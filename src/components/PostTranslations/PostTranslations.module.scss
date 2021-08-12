@@ -4,17 +4,18 @@
   border-radius: 5px;
   padding: 1em;
   margin-bottom: 40px;
-  transition: all 0.2s linear;
+  transition: background-color 0.2s linear, border-color 0.2s linear;
 }
 
 .translatedPostsText {
   color: var(--text-primary);
   font-size: 14px;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 }
 
 .translatedPostLink {
   font-size: 14px;
   margin-left: 8px;
   box-shadow: 0 1px 0 0 var(--text-link);
+  transition: box-shadow 0.2s linear;
 }

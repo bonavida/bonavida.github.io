@@ -7,7 +7,7 @@
   color: var(--text-primary);
   margin-top: 2em;
   margin-bottom: 1.2em;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear, margin-top 0.2s linear;
 }
 
 .posts {
@@ -20,7 +20,7 @@
 .post {
   display: flex;
   flex-direction: column;
-  transition: all 0.2s linear;
+  transition: margin-bottom 0.2s linear;
 
   &:not(:last-of-type) {
     margin-bottom: 1.2em;
@@ -48,21 +48,21 @@
     color: var(--text-secondary);
     font-size: 12px;
     margin: 0 7px;
-    transition: all 0.2s linear;
+    transition: color 0.2s linear;
   }
 }
 
 .postDate {
   color: var(--text-terciary);
   font-size: 12px;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 }
 
 .postReadingTimeText,
 .postReadingTimeIcon {
   color: var(--text-secondary);
   font-size: 12px;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 }
 
 .postReadingTimeIcon {

@@ -10,16 +10,16 @@ body {
 }
 
 body {
-  background: var(--bg-primary);
+  background-color: var(--bg-primary);
   color: var(--text-primary);
-  transition: all 0.2s linear;
+  transition: color 0.2s linear, background-color 0.2s linear;
 }
 
 a {
   color: var(--text-link);
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 
   &:focus,
   &:active,
@@ -39,7 +39,7 @@ p {
   word-break: break-word;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear;
 }
 
 h1,

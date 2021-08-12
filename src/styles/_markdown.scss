@@ -15,7 +15,7 @@ code[class*='language-'] {
   line-height: 24px;
   tab-size: 4;
   hyphens: none;
-  transition: all 0.2s linear;
+  transition: color 0.2s linear, background-color 0.2s linear;
 
   & * {
     color: var(--code-color);
@@ -36,7 +36,7 @@ pre[class*='language-'] {
   padding: 1.7em;
   margin-top: 20px;
   overflow: auto;
-  background: var(--code-bgColor);
+  background-color: var(--code-bgColor);
   border: 1px solid var(--code-border);
   border-radius: 6px;
   transition: all 0.2s linear;
@@ -46,7 +46,7 @@ pre[class*='language-'] {
   padding: 0.1em 0.3em;
   border-radius: 0.3em;
   color: var(--code-inline-color);
-  background: var(--code-inline-bgColor);
+  background-color: var(--code-inline-bgColor);
   font-size: 14px;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
@@ -98,7 +98,7 @@ pre[class*='language-'] {
 .language-css .token.string,
 .style .token.string {
   color: var(--token-operator);
-  background: var(--token-operator-bgColor);
+  background-color: var(--token-operator-bgColor);
 }
 .token.atrule,
 .token.attr-value {
@@ -168,7 +168,7 @@ pre[class*='language-'] > code[class*='language-'] {
   right: 0;
   padding: inherit 0;
   margin-top: 1em;
-  background: var(--line-highlight-bgColor);
+  background-color: var(--line-highlight-bgColor);
   box-shadow: inset 5px 0 0 var(--line-highlight-color);
   z-index: 0;
   pointer-events: none;

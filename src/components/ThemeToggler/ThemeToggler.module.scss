@@ -15,7 +15,7 @@
   }
 
   &:checked ~ .togglerBackground::before {
-    left: 6px;
+    left: 7px;
     width: 14px;
     height: 14px;
     background-color: var(--toggler-yellow);

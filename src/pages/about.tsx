@@ -43,7 +43,7 @@ const About = (): JSX.Element => (
         border: 3px solid var(--avatar-border);
         border-radius: 50%;
         padding: 8px;
-        transition: all 0.2s linear;
+        transition: border-color 0.2s linear;
       }
 
       .about__avatar img {
@@ -59,7 +59,7 @@ const About = (): JSX.Element => (
         display: flex;
         flex-direction: column;
         margin-top: 24px;
-        transition: all 0.2s linear;
+        transition: margin-top 0.2s linear;
       }
 
       .about__name {
@@ -69,7 +69,7 @@ const About = (): JSX.Element => (
         line-height: 40px;
         text-align: center;
         margin-bottom: 30px;
-        transition: all 0.2s linear;
+        transition: color 0.2s linear;
       }
 
       p {

@@ -27,9 +27,7 @@ export const setColorsByTheme = (): void => {
   const root = document.documentElement;
 
   Object.entries(colors).forEach(([name, colorByTheme]) => {
-    const cssVarName = `--${name}`;
-
-    root.style.setProperty(cssVarName, colorByTheme[colorMode]);
+    root.style.setProperty(`--${name}`, colorByTheme[colorMode]);
   });
 
   root.style.setProperty(colorModeCssProp, colorMode);

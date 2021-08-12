@@ -61,7 +61,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         border: 3px solid var(--avatar-border);
         border-radius: 50%;
         padding: 8px;
-        transition: all 0.2s linear;
+        transition: border-color 0.2s linear;
       }
 
       .home__avatar img {
@@ -101,7 +101,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         content: '→';
         margin-left: 8px;
         vertical-align: middle;
-        transition: all 0.3s ease;
+        transition: margin-left 0.3s ease;
       }
 
       .home__about:hover::after {
