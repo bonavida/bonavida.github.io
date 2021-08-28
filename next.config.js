@@ -15,7 +15,4 @@ module.exports = withImages({
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
-  future: {
-    webpack5: true,
-  },
 });
