@@ -126,5 +126,12 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
     "React": "writable"
-  }
+  },
+  "ignorePatterns": [
+    "dist/*",
+    "next.config.js",
+    "node_modules/*",
+    "out/*",
+    ".next/*"
+  ]
 }

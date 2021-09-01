@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "lint": "eslint ./**/*.{ts,tsx,js,jsx}",
+    "lint:fix": "eslint --fix ./**/*.{ts,tsx,js,jsx}",
+    "prettify": "prettier --config ./.prettierrc.json --write \"./**/*.{ts,tsx,js,jsx}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
