@@ -1,8 +1,6 @@
 import Head from 'next/head';
 /** Types */
 import { GetStaticProps } from 'next';
-/** Images */
-import ErrorImage from '@public/404.webp';
 
 const ErrorPage = (): JSX.Element => (
   <>
@@ -29,7 +27,7 @@ const ErrorPage = (): JSX.Element => (
       .error__background {
         width: 100%;
         height: 100%;
-        background: url(${ErrorImage}) 50% no-repeat;
+        background: url('/404.gif') 50% no-repeat;
         background-size: cover;
         opacity: 0.6;
       }
