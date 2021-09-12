@@ -19,7 +19,7 @@ const baseParams = {
 };
 
 export const getTopTracks = (
-  period = '1month'
+  period = '7day'
 ): Promise<TopTracksResponseData> => {
   const params = {
     ...baseParams,
@@ -35,7 +35,7 @@ export const getTopTracks = (
 };
 
 export const getTopArtists = (
-  period = '1month'
+  period = '7day'
 ): Promise<TopArtistsResponseData> => {
   const params = {
     ...baseParams,

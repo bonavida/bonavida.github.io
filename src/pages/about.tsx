@@ -5,9 +5,11 @@ import TopTracks from '@components/TopTracks';
 import { getAllTracksInfo, getTopTracks } from '@services/lastfm';
 /** Utils */
 import { getLargestImage } from '@utils/lastfm';
+import { hasReachedAWeek } from '@utils/date';
 /** Types */
 import { GetStaticProps } from 'next';
 import { Track } from '@customTypes/lastfm';
+import { fetchTopTracks } from '@services/tracks';
 
 interface AboutProps {
   tracks: Track[];
@@ -36,9 +38,7 @@ const About = ({ tracks }: AboutProps): JSX.Element => (
           Nullam lacinia elit nec arcu lacinia, vel posuere orci elementum.
           Maecenas felis nulla, aliquam in leo at, placerat lacinia velit.
         </p>
-        <p>
-          <TopTracks tracks={tracks} />
-        </p>
+        <TopTracks tracks={tracks} />
       </div>
     </main>
 
@@ -114,38 +114,14 @@ export const getStaticProps: GetStaticProps = async () => {
       "Hey, I'm Diego and I'm a frontend developer. I've built this small place just so I can post about things I find interesting and some other discoveries I make.",
   };
 
-  try {
-    const { track = [] } = (await getTopTracks()) || {};
+  const tracks = (await fetchTopTracks()) ?? [];
 
-    const partialTracks: Partial<Track>[] = track.map(({ name, artist }) => ({
-      name,
-      artist: artist.name,
-    }));
-
-    const responses = (await getAllTracksInfo(partialTracks)) || [];
-
-    const tracks = responses
-      .map((res) => res.data)
-      .map(({ track: { mbid, url, name, artist, album } = {} }) => ({
-        mbid: mbid || url,
-        name,
-        artist: artist?.name || '',
-        album: album?.title || '',
-        image: album?.image
-          ? getLargestImage(album?.image)?.['#text']
-          : '/no-album.png',
-      }));
-
-    return {
-      props: {
-        meta,
-        tracks,
-      },
-    };
-  } catch (err) {
-    console.error(err);
-    return { props: { meta, tracks: [] } };
-  }
+  return {
+    props: {
+      meta,
+      tracks,
+    },
+  };
 };
 
 export default About;

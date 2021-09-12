@@ -159,4 +159,12 @@ export default {
     light: '#1da1f2',
     dark: '#1da1f2',
   },
+  'panel-border-color': {
+    light: '#db4c69',
+    dark: '#3a3d46',
+  },
+  'panel-bgColor': {
+    light: '#f9f2f4',
+    dark: 'rgba(29, 39, 56, 0.75)',
+  },
 };
