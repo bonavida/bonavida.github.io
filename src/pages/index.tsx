@@ -128,8 +128,9 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         .home__content {
           flex-direction: unset;
           display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 48px;
+          grid-template-columns: 1fr 2fr;
+          column-gap: 64px;
+          row-gap: 48px;
         }
       }
     `}</style>
