@@ -12,9 +12,9 @@ const ThemeToggler = (): JSX.Element => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
 
   const handleChange = ({ target: { checked } }) => {
-    const checkedColorMode = (checked
-      ? Constants.DARK
-      : Constants.LIGHT) as ColorMode;
+    const checkedColorMode = (
+      checked ? Constants.DARK : Constants.LIGHT
+    ) as ColorMode;
 
     setColorMode(checkedColorMode);
   };
