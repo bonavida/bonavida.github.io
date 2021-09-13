@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import axios from 'axios';
 /** Services */
 import { getAllTracksInfo, getTopTracks } from '@services/lastfm';
 /** Utils */

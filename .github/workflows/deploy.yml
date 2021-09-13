@@ -12,14 +12,16 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install and Build 🔧
+      - name: Install
         uses: actions/setup-node@v2
         with:
           node-version: '14'
       - run: npm install
-      - name: npm init
-        run: npm init -y
-      - run: npm run build
+      - name: Build 🔧
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+          LASTFM_USER: ${{ secrets.LASTFM_USER }}
+        run: npm run build
       - run: npm run export
         env:
           CI: true
