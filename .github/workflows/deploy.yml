@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
+      - name: npm init
+        run: npm init -y
       - run: npm run build
       - run: npm run export
         env:
