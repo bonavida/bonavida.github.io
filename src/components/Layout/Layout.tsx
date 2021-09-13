@@ -4,7 +4,7 @@ import Meta from '@components/Meta';
 import Header from '@components/Header';
 import SubHeader from '@components/SubHeader';
 /** Types */
-import { MetaProps } from '@customTypes/post';
+import { MetaProps } from '@customTypes/meta';
 /** Styles */
 import styles from './Layout.module.scss';
 

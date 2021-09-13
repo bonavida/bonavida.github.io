@@ -21,9 +21,3 @@ export type Post = {
   lang: string;
   otherLangs: string[];
 } & PostMetadata;
-
-export interface MetaProps {
-  title: string;
-  description: string;
-  cardImage: string;
-}

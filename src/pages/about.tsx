@@ -1,8 +1,17 @@
 import Head from 'next/head';
+/** Components */
+import TopTracks from '@components/TopTracks';
+import CustomLink from '@components/CustomLink';
 /** Types */
 import { GetStaticProps } from 'next';
+import { Track } from '@customTypes/lastfm';
+import { fetchTopTracks } from '@services/tracks';
 
-const About = (): JSX.Element => (
+interface AboutProps {
+  tracks: Track[];
+}
+
+const About = ({ tracks }: AboutProps): JSX.Element => (
   <div>
     <Head>
       <title>Diego Bonavida</title>
@@ -15,16 +24,26 @@ const About = (): JSX.Element => (
       </div>
       <div className="about__content">
         <h1 className="about__name">Diego Bonavida</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-          elementum sollicitudin lacinia. Nam pulvinar mi in risus ullamcorper
-          sollicitudin. Nullam condimentum tortor tempus, malesuada sem ut,
-          luctus tellus.
-        </p>
-        <p>
-          Nullam lacinia elit nec arcu lacinia, vel posuere orci elementum.
-          Maecenas felis nulla, aliquam in leo at, placerat lacinia velit.
-        </p>
+        <section>
+          <p>
+            Hey, I&apos;m Diego and I&apos;m a frontend developer. I&apos;ve
+            built this small place just so I can post about things I find
+            interesting and some other discoveries I make.
+          </p>
+          <p>
+            My interests in software are JavaScript, TypeScript, React, Next.js
+            & Vue, among others.
+          </p>
+        </section>
+        <section>
+          <p>
+            If you want to know more about me,{' '}
+            <CustomLink to="/projects">these are the projects</CustomLink>{' '}
+            I&apos;ve been working on and here&apos;s what I&apos;ve been
+            listening this week the most:
+          </p>
+        </section>
+        <TopTracks tracks={tracks} />
       </div>
     </main>
 
@@ -77,6 +96,10 @@ const About = (): JSX.Element => (
         transition: all 0.2s linear;
       }
 
+      section {
+        margin-bottom: 20px;
+      }
+
       @media (min-width: 768px) {
         .about__avatar {
           width: 175px;
@@ -100,9 +123,12 @@ export const getStaticProps: GetStaticProps = async () => {
       "Hey, I'm Diego and I'm a frontend developer. I've built this small place just so I can post about things I find interesting and some other discoveries I make.",
   };
 
+  const tracks = (await fetchTopTracks()) ?? [];
+
   return {
     props: {
       meta,
+      tracks,
     },
   };
 };

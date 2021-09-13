@@ -1,0 +1,64 @@
+.topTracks {
+  display: grid;
+  row-gap: 16px;
+  column-gap: 32px;
+  background-color: var(--panel-bgColor);
+  border: 1px solid var(--panel-border-color);
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 10px;
+  transition: all 0.2s linear;
+}
+
+.topTrack {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topTrackCover {
+  max-width: 100%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+  margin-right: 10px;
+}
+
+.topTrackMetadata {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topTrackName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s linear;
+}
+
+.topTrackArtist {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s linear;
+}
+
+@media (min-width: 768px) {
+  .topTracks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

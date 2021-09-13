@@ -26,20 +26,20 @@ const Header = (): JSX.Element => (
       </div>
       <div className={styles.headerMenuItem}>
         <ActiveLink
+          to="/posts"
+          className={styles.headerMenuItemLink}
+          activeClassName={styles.headerMenuItemLinkActive}
+        >
+          Posts
+        </ActiveLink>
+      </div>
+      <div className={styles.headerMenuItem}>
+        <ActiveLink
           to="/projects"
           className={styles.headerMenuItemLink}
           activeClassName={styles.headerMenuItemLinkActive}
         >
           Projects
-        </ActiveLink>
-      </div>
-      <div className={styles.headerMenuItem}>
-        <ActiveLink
-          to="/setup"
-          className={styles.headerMenuItemLink}
-          activeClassName={styles.headerMenuItemLinkActive}
-        >
-          Setup
         </ActiveLink>
       </div>
     </div>
