@@ -3,6 +3,7 @@ import Link from 'next/link';
 /** Components */
 import HomePosts from '@components/HomePosts';
 import SocialMedia from '@components/SocialMedia';
+import CustomLink from '@components/CustomLink';
 /** Types */
 import { GetStaticProps } from 'next';
 import { PostMetadata } from '@customTypes/post';
@@ -38,9 +39,9 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
             </p>
           </section>
           <section>
-            <Link href="/about">
-              <a className="home__about">Learn more about me</a>
-            </Link>
+            <CustomLink to="/about" className="home__about">
+              <span className="home__about-text">Learn more about me</span>
+            </CustomLink>
           </section>
           <section>
             <SocialMedia />
@@ -92,19 +93,19 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
         transition: all 0.2s linear;
       }
 
-      .home__about {
+      .home__about-text {
         font-weight: 500;
         line-height: 1.2em;
       }
 
-      .home__about::after {
+      .home__about-text::after {
         content: '→';
         margin-left: 8px;
         vertical-align: middle;
         transition: margin-left 0.3s ease;
       }
 
-      .home__about:hover::after {
+      .home__about-text:hover::after {
         margin-left: 10px;
       }
 
