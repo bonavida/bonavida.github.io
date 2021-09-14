@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 /** Components */
 import HomePosts from '@components/HomePosts';
 import SocialMedia from '@components/SocialMedia';

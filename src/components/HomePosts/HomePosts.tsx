@@ -18,7 +18,7 @@ const HomePosts = ({ posts }: HomePostsProps): JSX.Element => (
     <ul className={styles.posts}>
       {posts.map(({ id, date, title, readingTime }) => (
         <li key={id} className={styles.post}>
-          <CustomLink to={`/posts/${id}`} className={styles.postLink}>
+          <CustomLink to={`/post/${id}`} className={styles.postLink}>
             {title}
           </CustomLink>
           <div className={styles.postMetadata}>
