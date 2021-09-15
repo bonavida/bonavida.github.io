@@ -3,13 +3,49 @@
   max-width: 83.333%;
   margin: 72px auto 0;
   display: flex;
+  justify-content: space-between;
+}
+
+.subHeaderRight {
   justify-content: flex-end;
+}
+
+.backButton {
+  font-family: iA Quattro, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    Liberation Mono, Courier New, monospace;
+  display: flex;
+  align-items: center;
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-terciary);
+  cursor: pointer;
+  transition: color 0.2s linear;
+
+  &:hover {
+    .backButtonIcon {
+      transform: translateX(-3px);
+    }
+  }
+
+  span {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 27px;
+  }
+}
+
+.backButtonIcon {
+  color: var(--text-terciary);
+  font-size: 12px !important;
+  margin-right: 7px;
+  transition: color 0.2s linear, transform 0.2s linear;
 }
 
 @media (min-width: 768px) {
   .subHeader {
     max-width: 100%;
     margin: 72px 0 0;
-    padding-right: 48px;
+    padding: 0 48px;
   }
 }
