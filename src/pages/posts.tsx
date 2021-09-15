@@ -37,7 +37,6 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
                   <FontAwesomeIcon
                     icon="glasses"
                     className="post__reading-time-icon"
-                    style={{ width: '0.9em' }}
                   />
                   <small className="post__reading-time-text">
                     {readingTime}
@@ -50,6 +49,21 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
       </section>
     </main>
 
+    <style jsx global>
+      {`
+        .post__reading-time-icon {
+          color: var(--text-secondary);
+          font-size: 11px;
+          transition: color 0.2s linear;
+        }
+
+        @media (min-width: 768px) {
+          .post__reading-time-icon {
+            font-size: 12px;
+          }
+        }
+      `}
+    </style>
     <style jsx>{`
       .posts {
         width: 100%;
@@ -94,6 +108,7 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
       .post__metadata {
         display: flex;
         align-items: center;
+        column-gap: 8px;
       }
 
       .post__reading-time {
@@ -106,7 +121,6 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
         content: '·';
         color: var(--text-secondary);
         font-size: 12px;
-        margin: 0 8px;
         transition: color 0.2s linear;
       }
 
@@ -116,8 +130,7 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
         transition: color 0.2s linear;
       }
 
-      .post__reading-time-text,
-      .post__reading-time-icon {
+      .post__reading-time-text {
         color: var(--text-secondary);
         font-size: 12px;
         transition: color 0.2s linear;
@@ -129,8 +142,7 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
         }
 
         .post__date,
-        .post__reading-time-text,
-        .post__reading-time-icon {
+        .post__reading-time-text {
           font-size: 14px;
         }
       }

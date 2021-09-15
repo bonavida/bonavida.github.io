@@ -8,6 +8,7 @@ import { registerIcons } from '@utils/fontAwesome';
 import Constants from '@constants/common';
 /** Styles */
 import '@styles/global.scss';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 registerIcons();
 
