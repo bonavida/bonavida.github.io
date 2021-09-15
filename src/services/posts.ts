@@ -1,11 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import remark from 'remark';
-import html from 'remark-html';
-import prism from 'remark-prism';
-import codeExtra from 'remark-code-extra';
-import codeFrontmatter from 'remark-code-frontmatter';
+import { serialize } from 'next-mdx-remote/serialize';
+import remarkPrism from 'remark-prism';
 import readingTime from 'reading-time';
 /** Types */
 import { PostMetadata, Post, PostParams } from '@customTypes/post';
@@ -20,7 +17,7 @@ export const getSortedPostsData = (): PostMetadata[] => {
   const fileNames = fs.readdirSync(defaultPostsDirectory);
   const allPostsData: PostMetadata[] = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
-    const id = fileName.replace(/\.md$/, '');
+    const id = fileName.replace(/\.mdx$/, '');
 
     // Read markdown file as string
     const fullPath = path.join(defaultPostsDirectory, fileName);
@@ -53,7 +50,7 @@ export const getAllPostIds = (): PostParams[] => {
 
   return fileNames
     .map((fileName) => {
-      const id = fileName.replace(/\.md$/, '');
+      const id = fileName.replace(/\.mdx$/, '');
       const langPaths = langs.map((lang) => ({
         params: {
           slug: [lang, id],
@@ -81,39 +78,18 @@ export const getPostData = async (
     lang === Constants.DEFAULT_LANG
       ? defaultPostsDirectory
       : path.join(postsDirectory, lang);
-  const fullPath = path.join(fullPostsDirectory, `${id}.md`);
+  const fullPath = path.join(fullPostsDirectory, `${id}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
   // Use gray-matter to parse the post metadata section
   const { content, data } = matter(fileContents);
 
   // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    // .use(codeFrontmatter)
-    // .use(codeExtra, {
-    //   transform: (node) =>
-    //     node.frontmatter.before || node.frontmatter.after
-    //       ? {
-    //           before: node.frontmatter.before && [
-    //             {
-    //               type: 'text',
-    //               value: node.frontmatter.before,
-    //             },
-    //           ],
-    //           after: node.frontmatter.after && [
-    //             {
-    //               type: 'text',
-    //               value: node.frontmatter.after,
-    //             },
-    //           ],
-    //         }
-    //       : null,
-    // })
-    .use(html)
-    .use(prism)
-    .process(content);
-
-  const contentHtml = processedContent.toString();
+  const processedContent = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkPrism],
+    },
+  });
 
   const { text } = readingTime(content);
 
@@ -123,7 +99,7 @@ export const getPostData = async (
 
   return {
     id,
-    content: contentHtml,
+    content: processedContent,
     readingTime: text,
     lang,
     otherLangs,

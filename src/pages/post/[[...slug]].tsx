@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { MDXRemote } from 'next-mdx-remote';
 /** Components */
 import PostTranslations from '@components/PostTranslations';
 /** Services */
@@ -36,7 +37,7 @@ const PostTemplate = ({
           <span className="post__date">{getFormattedDate({ date, lang })}</span>
         )}
         <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <MDXRemote {...content} />
       </main>
 
       <style jsx>{`

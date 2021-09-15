@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from 'querystring';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 interface Params extends ParsedUrlQuery {
   slug: string[];
@@ -17,7 +18,7 @@ export type PostMetadata = {
 };
 
 export type Post = {
-  content: string;
+  content: MDXRemoteSerializeResult;
   lang: string;
   otherLangs: string[];
 } & PostMetadata;
