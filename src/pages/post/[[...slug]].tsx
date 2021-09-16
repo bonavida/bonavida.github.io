@@ -36,7 +36,9 @@ const PostTemplate = ({
         {isMounted && (
           <span className="post__date">{getFormattedDate({ date, lang })}</span>
         )}
-        <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
+        {!!otherLangs?.length && (
+          <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
+        )}
         <MDXRemote {...content} />
       </main>
 

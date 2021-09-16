@@ -87,7 +87,7 @@ const Home = ({ posts }: PostsProps): JSX.Element => (
         margin: 0;
         padding: 0;
         display: grid;
-        row-gap: 1.75em;
+        row-gap: 2em;
         transition: all 0.2s linear;
       }
 
