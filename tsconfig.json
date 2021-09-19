@@ -26,6 +26,9 @@
       "@styles/*": [
         "src/styles/*"
       ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
       "@public/*": [
         "public/*"
       ],

@@ -1,0 +1,26 @@
+.SearchboxContainer {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  background-color: #e6eedd;
+  padding: 15px;
+}
+
+.SearchboxIcon {
+  font-size: 16px;
+  margin-right: 10px;
+  color: #1d1d35;
+}
+
+.SearchboxInput {
+  input {
+    color: #1d1d35;
+    background-color: #e6eedd;
+    border: 0;
+
+    &:focus {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
