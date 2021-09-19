@@ -15,6 +15,10 @@ export default {
     light: '#e6e6e6',
     dark: '#1c3246',
   },
+  'bg-header-menu': {
+    light: '#FCFCFC',
+    dark: '#182337',
+  },
   'text-header-link': {
     light: '#152736',
     dark: '#ffffff',

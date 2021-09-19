@@ -15,7 +15,6 @@ const SubHeader = (): JSX.Element => {
   });
 
   const handleClick = () => {
-    console.log(router);
     router.back();
   };
 
