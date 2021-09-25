@@ -171,4 +171,12 @@ export default {
     light: '#f9f2f4',
     dark: 'rgba(29, 39, 56, 0.75)',
   },
+  'searchbox-border': {
+    light: '#a2acb1',
+    dark: 'transparent',
+  },
+  'searchbox-shadow': {
+    light: 'rgba(47, 100, 121, 0.25)',
+    dark: 'rgba(245, 245, 245, 0.25)',
+  },
 };

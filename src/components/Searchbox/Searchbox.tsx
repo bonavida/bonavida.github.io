@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Hooks */
 import useDebounce from '@hooks/useDebounce';
@@ -39,8 +39,8 @@ const Searchbox = ({
     }
   }, [debouncedQuery]);
 
-  const handleChangeQuery = ({ target: { value } }) => {
-    setQuery(value);
+  const handleChangeQuery = ({ target: { value = '' } }) => {
+    setQuery(value.toLowerCase());
   };
 
   return (

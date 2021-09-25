@@ -1,3 +1,4 @@
+import { useCallback, useMemo, useState } from 'react';
 import Head from 'next/head';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /** Components */
@@ -6,7 +7,6 @@ import Searchbox from '@components/Searchbox';
 /** Types */
 import { GetStaticProps } from 'next';
 import { PostMetadata } from '@customTypes/post';
-import { useState } from 'react';
 /** Services */
 import { getSortedPostsData } from '@services/posts';
 /** Utils */
@@ -18,10 +18,17 @@ export type PostsProps = {
 
 const Home = ({ posts }: PostsProps): JSX.Element => {
   const [query, setQuery] = useState('');
+  const filteredPosts = useMemo(
+    () => posts.filter(({ title }) => title.toLowerCase().includes(query)),
+    [query]
+  );
 
-  const handleChangeQuery = (newQuery: string) => {
-    setQuery(newQuery);
-  };
+  const handleChangeQuery = useCallback(
+    (newQuery: string) => {
+      setQuery(newQuery);
+    },
+    [setQuery]
+  );
 
   return (
     <div>
@@ -31,41 +38,43 @@ const Home = ({ posts }: PostsProps): JSX.Element => {
 
       <main className="posts">
         <h1 className="posts__title">Posts</h1>
-        <section>
+        <section className="posts__searchbox">
           {/* TODO: Searchbox and language toggler */}
           <Searchbox
             name="searchbox_posts"
             placeholder="Search post"
+            debounce={0}
             onChange={handleChangeQuery}
           />
         </section>
         <section>
           <ul className="posts__posts">
-            {posts
-              .filter(({ title }) =>
-                title.toLowerCase().includes(query.toLowerCase())
-              )
-              .map(({ id, date, title, readingTime }) => (
-                <li key={id} className="post">
-                  <CustomLink to={`/post/${id}`} className="post__link">
-                    <span className="post__link">{title}</span>
-                  </CustomLink>
-                  <div className="post__metadata">
-                    <small className="post__date">
-                      {getFormattedDate({ date })}
+            {filteredPosts.map(({ id, date, title, readingTime }) => (
+              <li key={id} className="post">
+                <CustomLink to={`/post/${id}`} className="post__link">
+                  <span className="post__link">{title}</span>
+                </CustomLink>
+                <div className="post__metadata">
+                  <small className="post__date">
+                    {getFormattedDate({ date })}
+                  </small>
+                  <div className="post__reading-time">
+                    <FontAwesomeIcon
+                      icon="glasses"
+                      className="post__reading-time-icon"
+                    />
+                    <small className="post__reading-time-text">
+                      {readingTime}
                     </small>
-                    <div className="post__reading-time">
-                      <FontAwesomeIcon
-                        icon="glasses"
-                        className="post__reading-time-icon"
-                      />
-                      <small className="post__reading-time-text">
-                        {readingTime}
-                      </small>
-                    </div>
                   </div>
-                </li>
-              ))}
+                </div>
+              </li>
+            ))}
+            {!filteredPosts.length && (
+              <li className="posts__empty">
+                Oops, no posts found matching your criteria!
+              </li>
+            )}
           </ul>
         </section>
       </main>
@@ -110,6 +119,17 @@ const Home = ({ posts }: PostsProps): JSX.Element => {
           display: grid;
           row-gap: 2em;
           transition: all 0.2s linear;
+        }
+
+        .posts__searchbox {
+          width: 100%;
+          max-width: 600px;
+          margin-bottom: 40px;
+        }
+
+        .posts__empty {
+          color: var(--text-primary);
+          transition: color 0.2s linear;
         }
 
         .post {

@@ -1,26 +1,27 @@
 .SearchboxContainer {
-  display: flex;
-  align-items: center;
-  height: 45px;
-  background-color: #e6eedd;
-  padding: 15px;
+  position: relative;
 }
 
 .SearchboxIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 16px;
-  margin-right: 10px;
-  color: #1d1d35;
+  color: #809097;
 }
 
 .SearchboxInput {
   input {
     color: #1d1d35;
-    background-color: #e6eedd;
-    border: 0;
+    background-color: #fcfcfc;
+    border: 1px solid var(--searchbox-border);
+    border-radius: 6px;
+    padding: 12px 15px 12px 38px;
 
     &:focus {
-      border: 0;
-      box-shadow: none;
+      border-color: #809097;
+      box-shadow: 0 0 0 0.2rem var(--searchbox-shadow);
     }
   }
 }
