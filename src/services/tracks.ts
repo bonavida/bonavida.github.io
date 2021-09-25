@@ -49,9 +49,7 @@ export const fetchTopTracks = async (): Promise<Track[]> => {
         name,
         artist: artist?.name || '',
         album: album?.title || '',
-        image: album?.image
-          ? getLargestImage(album?.image)?.['#text']
-          : '/no-album.png',
+        image: getLargestImage(album?.image)?.['#text'] || '/no-album.png',
       }));
 
     // eslint-disable-next-line no-empty
