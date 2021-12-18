@@ -18,9 +18,9 @@ export const getFormattedDate = ({
   new Date(date).toLocaleDateString(Constants.LOCALE_BY_LANG[lang], options);
 
 export const hasReachedAWeek = (time: string): boolean => {
-  const previousDate = new Date(+time);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  today.setDate(today.getDate() - 7);
-  return previousDate < today;
+  if (!time) return false;
+  const date = new Date(+time);
+  const aWeekAgo = new Date();
+  aWeekAgo.setDate(aWeekAgo.getDate() - 7);
+  return date < aWeekAgo;
 };
