@@ -1,0 +1,74 @@
+---
+title: 'Cómo guardar datos en caché en Next.js'
+date: '2021-12-19'
+description: 'Si necesitas guardar datos en tiempo de compilación en Next.js y no sabes cómo, pasa y toma asiento.'
+---
+
+Uno de los problemas que tenemos a la hora de trabajar con server-side en Next.js es que no tenemos acceso a la API del navegador en tiempo de compilación. ¿Qué significa esto? Que no podemos usar localStorage, sessionStorage ni muchas otras cosas en la parte del servidor.
+
+Tuve este mismo problema cuando estaba implementando la sección [About](https://bonavida.dev/about) de este blog. La idea era tener que llamar solo una vez a la semana a la API de Last.fm para obtener mi top 10 de canciones de la semana. De esta manera, solo tendría que volver a llamar a la API si había pasado una semana o más desde entonces.
+
+Intenté varias soluciones para poder acceder a la API, pero nada funcionó. Así que se me ocurrió una cosa: **guardar los datos en un fichero local que hiciera de caché**.
+
+Al principio no estaba realmente seguro de si iba a funcionar en producción, porque hacemos uso del sistema de ficheros. Pero sí, funciona ✨✨✨.
+
+```js
+import fs from 'fs';
+import path from 'path';
+/** Utils */
+import { hasReachedAWeek } from '@utils/date';
+
+const TOP_TRACKS_CACHE_PATH = path.join(process.cwd(), '.tracks');
+
+export const fetchTopTracks = async () => {
+  let cachedData;
+  let tracks = [];
+
+  // Check if the data is cached
+  try {
+    cachedData = JSON.parse(fs.readFileSync(TOP_TRACKS_CACHE_PATH, 'utf8') ?? null);
+  } catch (error) {
+    console.error(error);
+  }
+
+  // If data is cached and a week has not yet passed, use cached data
+  if (!hasReachedAWeek(cachedData?.updatedAt)) {
+    return cachedData.data;
+  }
+
+  // If not, fetch the data from the Last.fm API and store it in the cache file
+  try {
+    tracks = (await getTopTracks()) || [];
+
+    const now = new Date();
+
+    fs.writeFileSync(
+      TOP_TRACKS_CACHE_PATH,
+      JSON.stringify({ updatedAt: now.getTime(), data: tracks }),
+      { flag: 'w', encoding: 'utf8' }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+
+  return tracks;
+};
+```
+
+Una vez hecho esto, en cualquier lugar que necesitemos usar los datos cacheados, podemos importar este método y usarlo dentro del `getStaticProps` de cualquier página de Next.js:
+
+```js
+import { fetchTopTracks } from '@lib/tracks';
+```
+
+```js
+export const getStaticProps = async () => {
+  const tracks = (await fetchTopTracks()) ?? [];
+
+  return {
+    props: {
+      tracks,
+    },
+  };
+};
+```
