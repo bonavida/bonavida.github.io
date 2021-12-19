@@ -63,6 +63,14 @@ export default {
     light: '#ffd712',
     dark: '#ffd712',
   },
+  'translation-banner-border': {
+    light: '#db4c69',
+    dark: ' #a8b0bf',
+  },
+  'translation-banner-bgColor': {
+    light: '#f9f2f4',
+    dark: ' #2e3444',
+  },
   'code-inline-color': {
     light: '#db4c69',
     dark: '#ffd712',
@@ -70,6 +78,14 @@ export default {
   'code-inline-bgColor': {
     light: '#f9f2f4',
     dark: '#3e3d3b',
+  },
+  'blockquote-bgColor': {
+    light: '#f9f2f4',
+    dark: '#444444',
+  },
+  'blockquote-border': {
+    light: '#f3c1cb',
+    dark: '#8d7919',
   },
   'code-color': {
     light: '#2a3032',
@@ -178,5 +194,9 @@ export default {
   'searchbox-shadow': {
     light: 'rgba(47, 100, 121, 0.25)',
     dark: 'rgba(245, 245, 245, 0.25)',
+  },
+  'separator-color': {
+    light: '#ddd',
+    dark: '#2f3b4e',
   },
 };

@@ -1,8 +1,8 @@
 .translatedPosts {
-  background-color: var(--code-inline-bgColor);
-  border: 1px solid var(--code-inline-color);
+  background-color: var(--translation-banner-bgColor);
+  border: 1px solid var(--translation-banner-border);
   border-radius: 5px;
-  padding: 1em;
+  padding: 0.7em 1em;
   margin-bottom: 40px;
   transition: background-color 0.2s linear, border-color 0.2s linear;
 }

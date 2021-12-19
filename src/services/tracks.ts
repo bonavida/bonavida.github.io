@@ -20,7 +20,9 @@ export const fetchTopTracks = async (): Promise<Track[]> => {
       fs.readFileSync(TOP_TRACKS_CACHE_PATH, 'utf8') ?? null
     );
     // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 
   // If data is cached and a week has not yet passed, use cached data
   if (
@@ -49,23 +51,19 @@ export const fetchTopTracks = async (): Promise<Track[]> => {
         name,
         artist: artist?.name || '',
         album: album?.title || '',
-        image: getLargestImage(album?.image)?.['#text'] || '/no-album.png',
+        image: getLargestImage(album?.image)?.['#text'] || '/img/no-album.png',
       }));
 
-    // eslint-disable-next-line no-empty
-  } catch (error) {}
-
-  try {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const now = new Date();
 
     fs.writeFileSync(
       TOP_TRACKS_CACHE_PATH,
-      JSON.stringify({ updatedAt: today.getTime(), data: tracks }),
+      JSON.stringify({ updatedAt: now.getTime(), data: tracks }),
       { flag: 'w', encoding: 'utf8' }
     );
-    // eslint-disable-next-line no-empty
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 
   return tracks;
 };

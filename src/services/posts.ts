@@ -5,7 +5,7 @@ import { serialize } from 'next-mdx-remote/serialize';
 import remarkPrism from 'remark-prism';
 import readingTime from 'reading-time';
 /** Types */
-import { PostMetadata, Post, PostParams } from '@customTypes/post';
+import { PostMetadata, Post, PostPath } from '@customTypes/post';
 /** Constants */
 import Constants from '@constants/common';
 
@@ -42,12 +42,17 @@ export const getSortedPostsData = (): PostMetadata[] => {
   );
 };
 
-export const getAllPostIds = (): PostParams[] => {
+export const getAllPathsFromPosts = (): PostPath[] => {
+  // Get the posts from the default languange
   const fileNames = fs.readdirSync(defaultPostsDirectory);
+  // Get all the available languages
   const langs = fs
     .readdirSync(postsDirectory)
     .filter((lang) => lang !== Constants.DEFAULT_LANG);
 
+  // Build all the paths using the locale (if needed) and the filename
+  // Default lang URL -> /post/hello-world
+  // Other lang URL -> /post/{lang}/hello-world
   return fileNames
     .map((fileName) => {
       const id = fileName.replace(/\.mdx$/, '');
@@ -73,7 +78,7 @@ export const getPostData = async (
   lang: string = Constants.DEFAULT_LANG,
   id: string
 ): Promise<Post> => {
-  // Get content from /posts/{defaultLang | lang}/{id}.md file
+  // Get content from /posts/{lang}/{id}.mdx file
   const fullPostsDirectory =
     lang === Constants.DEFAULT_LANG
       ? defaultPostsDirectory
@@ -84,7 +89,7 @@ export const getPostData = async (
   // Use gray-matter to parse the post metadata section
   const { content, data } = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
+  // Use next-mdx-remote to convert markdown into HTML
   const processedContent = await serialize(content, {
     mdxOptions: {
       remarkPlugins: [remarkPrism],

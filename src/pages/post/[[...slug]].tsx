@@ -4,10 +4,10 @@ import { MDXRemote } from 'next-mdx-remote';
 /** Components */
 import PostTranslations from '@components/PostTranslations';
 /** Services */
-import { getAllPostIds, getPostData } from '@services/posts';
+import { getAllPathsFromPosts, getPostData } from '@services/posts';
 /** Types */
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { Post, PostParams } from '@customTypes/post';
+import { Post, PostPath } from '@customTypes/post';
 /** Utils */
 import { getFormattedDate } from '@utils/date';
 
@@ -52,8 +52,8 @@ const PostTemplate = ({
 
         .post__title {
           color: var(--text-primary);
-          font-size: 42px;
-          line-height: 45px;
+          font-size: 24px;
+          line-height: 34px;
           transition: color 0.2s linear;
         }
 
@@ -64,13 +64,27 @@ const PostTemplate = ({
           color: var(--text-primary);
           transition: color 0.2s linear;
         }
+
+        @media (min-width: 480px) {
+          .post__title {
+            font-size: 36px;
+            line-height: 40px;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .post__title {
+            font-size: 42px;
+            line-height: 45px;
+          }
+        }
       `}</style>
     </>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
+  const paths = getAllPathsFromPosts();
 
   return {
     paths,
@@ -80,7 +94,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({
   params: { slug },
-}: PostParams) => {
+}: PostPath) => {
   // The slug param can have one or two parameters.
   // One parameter -> [id]
   // Two parameters -> [slug, id]

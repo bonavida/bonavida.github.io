@@ -27,7 +27,7 @@ const ErrorPage = (): JSX.Element => (
       .error__background {
         width: 100%;
         height: 100%;
-        background: url('/404.gif') 50% no-repeat;
+        background: url('/img/404.gif') 50% no-repeat;
         background-size: cover;
         opacity: 0.6;
       }

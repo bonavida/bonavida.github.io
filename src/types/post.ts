@@ -5,7 +5,7 @@ interface Params extends ParsedUrlQuery {
   slug: string[];
 }
 
-export type PostParams = {
+export type PostPath = {
   params: Params;
 };
 

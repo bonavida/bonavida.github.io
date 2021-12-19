@@ -9,7 +9,7 @@ interface TopTrackPops {
 
 const TopTracks = ({ tracks }: TopTrackPops): JSX.Element => {
   const onImageErrorHandler = ({ target }) => {
-    target.src = '/no-album.png';
+    target.src = '/img/no-album.png';
   };
 
   return (

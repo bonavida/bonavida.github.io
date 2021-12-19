@@ -1,0 +1,278 @@
+---
+title: 'How to post articles in other languages in your Next.js Markdown blog'
+date: '2021-11-06'
+description: 'How to post articles in other languages in your Next.js Markdown blog'
+---
+
+When I decided to start learning Next.js, I saw that it was a good opportunity to build this website for practicing — apart from the fact that I've always wanted to have a place where I could leave all the stuff that I found interesting about JS and React, among other things.
+
+One of the very first things I was curious about was how internationalization (i18n) was going to be handled in Next.js. Generally, it is included out of the box, both for _server side rendering_ (SSR) and _static site generation_ (SSG), but for this last one there's an inconvenient: the internationalization [is not compatible](https://nextjs.org/docs/advanced-features/i18n-routing#how-does-this-work-with-static-generation) with `next export` for the time being (`next export` is a Next.js command used to export your application into static HTML).
+
+And why does it affect to the creation of this blog? Well, because, although this blog uses SSG, it needs the `next export` command to deploy the generated files into GitHub Pages.
+
+This is what the official Next.js documentation says:
+
+> Note that **Internationalized Routing** does not integrate with `next export` as `next export` does not leverage the Next.js routing layer. Hybrid Next.js applications that do not use `next export` are fully supported.
+
+This said, there are several ways to solve this issue. For example, we could use the [Context API](https://es.reactjs.org/docs/context.html) from React to create a custom internationalization layer, but I think that was way too complicated for the purpose of this application, which is to offer the possibility of having a few posts translated into other languages — something similar to what **Dan Abramov** does in his blog [Overreacted](https://overreacted.io/).
+
+![Overreacted](/img/posts/overreacted.png)
+
+## Let's get the party started!
+
+The first thing that we're going to do is to define a few constants for the languages and place them in a `constants.ts` file.
+
+```js
+export const constants = {
+  // ...
+  DEFAULT_LANG: 'en',
+  SUPPORTED_LANGS: {
+    es: 'Spanish',
+    en: 'English',
+  },
+};
+```
+
+We will use `DEFAULT_LANG` to define the default language that will be shown initially, and we will use `SUPPORTED_LANGS` to list all the available languages.
+
+To begin with, the main idea is to create a directory for each language and place all the posts in each one of them (keeping the same name between the original post and the translations). We could have something like this:
+
+```
+posts
+  ├── en
+  │   ├── hello-world.mdx
+  │   └── this-is-another-post.mdx
+  └── es
+      ├── hello-world.mdx
+      └── this-is-another-post.mdx
+```
+
+After this, we need to go to the place where we have all the logic that we use to get the posts, etc. so we can do a few small modifications.
+
+1. Define the path to the directory where all the posts in the default language are being stored.
+
+```js
+const postsDirectory = path.join(process.cwd(), 'src', 'posts');
+const defaultPostsDirectory = path.join(postsDirectory, constants.DEFAULT_LANG);
+```
+
+2. Modify the method to extract all the posts and their metadata.
+
+```ts
+export const getSortedPostsData = (): PostMetadata[] => {
+  // Get file names under /posts/{defaultLang}
+  const fileNames = fs.readdirSync(defaultPostsDirectory);
+  const allPostsData: PostMetadata[] = fileNames.map((fileName) => {
+    // Remove ".md" from file name to get id
+    const id = fileName.replace(/\.mdx$/, '');
+
+    // Read markdown file as string
+    const fullPath = path.join(defaultPostsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+    // Use gray-matter to parse the post metadata section
+    const { content, data } = matter(fileContents);
+
+    // Combine the data with the id
+    return {
+      id,
+      ...data,
+    };
+  });
+
+  // Sort posts by date
+  return allPostsData.sort(({ date: aDate }, { date: bDate }) =>
+    aDate < bDate ? 1 : -1
+  );
+};
+```
+
+3. Modify the method to get all the paths of the posts (this is needed for the `getStaticPaths` method, we will see it later).
+
+```ts
+export const getAllPathsFromPosts = (): PostPath[] => {
+  // Get the posts from the default languange
+  const fileNames = fs.readdirSync(defaultPostsDirectory);
+  // Get all the available languages
+  const langs = fs
+    .readdirSync(postsDirectory)
+    .filter((lang) => lang !== Constants.DEFAULT_LANG);
+
+  // Build all the paths using the locale (if needed) and the filename
+  // Default lang URL -> /post/hello-world
+  // Other lang URL -> /post/{lang}/hello-world
+  return fileNames
+    .map((fileName) => {
+      const id = fileName.replace(/\.mdx$/, '');
+      const langPaths = langs.map((lang) => ({
+        params: {
+          slug: [lang, id],
+        },
+      }));
+
+      return [
+        {
+          params: {
+            slug: [id],
+          },
+        },
+        ...langPaths,
+      ];
+    })
+    .flat();
+};
+```
+
+4. Modify the method to extract the markdown content from a specific post and convert it into HTML.
+
+```ts
+export const getPostData = async (
+  lang: string = Constants.DEFAULT_LANG,
+  id: string
+): Promise<Post> => {
+  // Get content from /posts/{lang}/{id}.mdx file
+  const fullPostsDirectory =
+    lang === Constants.DEFAULT_LANG
+      ? defaultPostsDirectory
+      : path.join(postsDirectory, lang);
+  const fullPath = path.join(fullPostsDirectory, `${id}.mdx`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+  // Use gray-matter to parse the post metadata section
+  const { content, data } = matter(fileContents);
+
+  // Use next-mdx-remote to convert markdown into HTML
+  const processedContent = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkPrism],
+    },
+  });
+
+  const otherLangs = fs
+    .readdirSync(postsDirectory)
+    .filter((language) => language !== Constants.DEFAULT_LANG);
+
+  return {
+    id,
+    content: processedContent,
+    lang,
+    otherLangs,
+    ...data,
+  };
+};
+```
+
+After this, we need to go to the Next.js page where we are rendering the content of our posts and adapt it so we can also read the translated posts. For this, we are going to use a Next.js feature called [Dynamic Routes](https://nextjs.org/docs/routing/dynamic-routes). In fact, we are going to use the [Optional catch all routes](https://nextjs.org/docs/routing/dynamic-routes#optional-catch-all-routes) feature. It basically allows us to catch all the paths optionally. So, if we rename the filename of the Next.js page from `/pages/post/[id].tsx` to `/pages/post/[[...slug]].tsx`, we will be able to catch both, the `/post/hello-world` route and the `/post/es/hello-world` route. And that's exactly what we need for our blog.
+
+Once we have renamed the file, we only need to add the `getStaticPaths` and `getStaticProps` methods inside the Next.js page.
+
+```ts
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = getAllPathsFromPosts();
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({
+  params: { slug },
+}: PostPath) => {
+  // The slug param can have one or two parameters.
+  // One parameter -> [id]
+  // Two parameters -> [slug, id]
+  // We need to destructure the array in a specific way to get each parameter right
+  const [lang, id] = slug.length === 1 ? [undefined, slug[0]] : slug;
+
+  const postData = await getPostData(lang, id);
+
+  return {
+    props: postData,
+  };
+};
+```
+
+Last but not least, if we want to show the available translations of a post, we will need to create a `PostTranslations` component in order to use it in `[[...slug]].tsx`.
+
+```tsx
+/** Components */
+import CustomLink from '@components/CustomLink';
+/** Constants */
+import Constants from '@constants/common';
+/** Styles */
+import styles from './PostTranslations.module.scss';
+
+interface PostTranslationsProps {
+  id: string;
+  lang: string;
+  otherLangs: string[];
+}
+
+const PostTranslations = ({
+  id,
+  lang,
+  otherLangs,
+}: PostTranslationsProps): JSX.Element => (
+  <div className={styles.translatedPosts}>
+    {lang === Constants.DEFAULT_LANG ? (
+      <>
+        <span className={styles.translatedPostsText}>
+          This post has been translated into:
+        </span>
+        {otherLangs.map((otherLang) => (
+          <CustomLink
+            key={`${otherLang}_translation`}
+            to={`/post/${otherLang}/${id}`}
+            className={styles.translatedPostLink}
+          >
+            {Constants.SUPPORTED_LANGS[otherLang]}
+          </CustomLink>
+        ))}
+      </>
+    ) : (
+      <>
+        <span className={styles.translatedPostsText}>
+          Read the original post
+        </span>
+        <CustomLink to={`/post/${id}`} className={styles.translatedPostLink}>
+          here
+        </CustomLink>
+        <span className={styles.translatedPostsText}>.</span>
+      </>
+    )}
+  </div>
+);
+
+export default PostTranslations;
+```
+
+```tsx
+const PostTemplate = ({
+  id,
+  content,
+  title,
+  lang,
+  otherLangs,
+}: Post): JSX.Element => {
+  return (
+    <main className="post__content">
+      <h1 className="post__title">{title}</h1>
+      {!!otherLangs?.length && (
+        <PostTranslations id={id} lang={lang} otherLangs={otherLangs} />
+      )}
+      <MDXRemote {...content} />
+    </main>
+  );
+};
+```
+
+This way, we will be able to see this in the original post:
+
+![Translated posts](/img/posts/translations_1.png)
+
+And then we will see this in the translated posts:
+
+![Original post](/img/posts/translations_2.png)
+
+If you have any doubt, or you're curious about anything, feel free to take a look to the repo on [Github](https://github.com/bonavida/bonavida.github.io)!

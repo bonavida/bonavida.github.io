@@ -20,7 +20,7 @@ const About = ({ tracks }: AboutProps): JSX.Element => (
 
     <main className="about">
       <div className="about__avatar">
-        <img src="/avatar.jpg" alt="Diego Bonavida" />
+        <img src="/img/avatar.jpg" alt="Diego Bonavida" />
       </div>
       <div className="about__content">
         <h1 className="about__name">Diego Bonavida</h1>
@@ -35,12 +35,18 @@ const About = ({ tracks }: AboutProps): JSX.Element => (
             & Vue, among others.
           </p>
         </section>
+        <div className="separator" />
         <section>
           <p>
             If you want to know more about me,{' '}
+            <CustomLink to="/posts">these are the posts</CustomLink> that
+            I&apos;ve been publishing here, and{' '}
             <CustomLink to="/projects">these are the projects</CustomLink>{' '}
-            I&apos;ve been working on and here&apos;s what I&apos;ve been
-            listening this week the most:
+            I&apos;ve been working on.
+          </p>
+          <p>
+            Bonus! If you&apos;re even more curious about what I&apos;ve been
+            listening this week the most, here you have:
           </p>
         </section>
         <TopTracks tracks={tracks} />
@@ -97,7 +103,16 @@ const About = ({ tracks }: AboutProps): JSX.Element => (
       }
 
       section {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+      }
+
+      .separator {
+        margin: 10px auto;
+        width: 100%;
+        max-width: 50%;
+        height: 1px;
+        background-color: var(--separator-color);
+        transition: background-color 0.2s linear;
       }
 
       @media (min-width: 768px) {

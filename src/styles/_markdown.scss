@@ -33,7 +33,7 @@ code[class*='language-'] {
 }
 
 pre[class*='language-'] {
-  padding: 1.7em;
+  padding: 1.4em 1.7em;
   margin-top: 20px;
   overflow: auto;
   background-color: var(--code-bgColor);
@@ -51,6 +51,22 @@ pre[class*='language-'] {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
   transition: all 0.2s linear;
+}
+
+blockquote {
+  background-color: var(--blockquote-bgColor);
+  border: 1px solid var(--code-inline-color);
+  border-left-width: 5px;
+  margin: 0;
+  padding: 1.5em 2em;
+  margin-top: 25px;
+  border-radius: 4px;
+  transition: background-color 0.2s linear, border-color 0.2s linear;
+
+  p {
+    margin-top: 0;
+    font-size: 15px;
+  }
 }
 
 /*********************************************************

@@ -5,7 +5,7 @@ import { MetaProps } from '@customTypes/meta';
 const Meta = ({
   title,
   description,
-  cardImage = '/avatar.jpg',
+  cardImage = '/img/avatar.jpg',
 }: MetaProps): JSX.Element => (
   <Head>
     <title>{title}</title>

@@ -21,7 +21,7 @@ const Home = ({ posts }: HomeProps): JSX.Element => (
 
     <main className="home">
       <div className="home__avatar">
-        <img src="/avatar.jpg" alt="Diego Bonavida" />
+        <img src="/img/avatar.jpg" alt="Diego Bonavida" />
       </div>
       <div className="home__content">
         <div className="home__author">
