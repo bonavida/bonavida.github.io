@@ -9,6 +9,7 @@ const withMDX = require('@next/mdx')({
 const ghPages = process.env.DEPLOY_TARGET === 'gh-pages';
 
 const nextConfig = withImages({
+  swcMinify: true,
   assetPrefix: ghPages ? '/bonavida.github.io/' : '',
   webpack: (config) => {
     config.module.rules.push({
