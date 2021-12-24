@@ -58,7 +58,7 @@ const defaultPostsDirectory = path.join(postsDirectory, constants.DEFAULT_LANG);
 
 2. Modificamos el método para extraer los posts y su metadata.
 
-```ts
+```js
 export const getSortedPostsData = (): PostMetadata[] => {
   // Get file names under /posts/{defaultLang}
   const fileNames = fs.readdirSync(defaultPostsDirectory);
@@ -89,7 +89,7 @@ export const getSortedPostsData = (): PostMetadata[] => {
 
 3. Modificamos el método para obtener los paths de todos los posts (necesario para `getStaticPaths`, lo veremos más adelante).
 
-```ts
+```js
 export const getAllPathsFromPosts = (): PostPath[] => {
   // Get the posts from the default languange
   const fileNames = fs.readdirSync(defaultPostsDirectory);
@@ -125,7 +125,7 @@ export const getAllPathsFromPosts = (): PostPath[] => {
 
 4. Modificamos el método para extraer el contenido markdown de un post específico y convertirlo a HTML.
 
-```ts
+```js
 export const getPostData = async (
   lang: string = Constants.DEFAULT_LANG,
   id: string
@@ -166,7 +166,7 @@ Después de todo esto, necesitamos ir a la página de Next.js donde se renderiza
 
 Una vez hecho esto, dentro de la página de Next.js tan solo necesitamos añadir los métodos `getStaticPaths` y `getStaticProps`.
 
-```ts
+```js
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPathsFromPosts();
 
@@ -195,7 +195,7 @@ export const getStaticProps: GetStaticProps = async ({
 
 Por último, queremos mostrar las traducciones del post que hay disponibles. Para ello, nos creamos un componente `PostTranslations` y lo usamos en `[[...slug]].tsx`.
 
-```tsx
+```jsx
 /** Components */
 import CustomLink from '@components/CustomLink';
 /** Constants */
@@ -247,7 +247,7 @@ const PostTranslations = ({
 export default PostTranslations;
 ```
 
-```tsx
+```jsx
 const PostTemplate = ({
   id,
   content,

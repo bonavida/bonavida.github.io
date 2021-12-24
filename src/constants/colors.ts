@@ -93,7 +93,7 @@ export default {
   },
   'code-bgColor': {
     light: '#f7f7f7',
-    dark: '#282A3A  ',
+    dark: '#282A3A',
   },
   'code-border': {
     light: '#dce2e2',
@@ -125,7 +125,7 @@ export default {
   },
   'token-operator-bgColor': {
     light: '#f7f7f7',
-    dark: '#252638',
+    dark: '#282A3A',
   },
   'token-tag': {
     light: '#ff5779',

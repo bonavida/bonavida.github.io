@@ -14,7 +14,7 @@ This is what the official Next.js documentation says:
 
 > Note that **Internationalized Routing** does not integrate with `next export` as `next export` does not leverage the Next.js routing layer. Hybrid Next.js applications that do not use `next export` are fully supported.
 
-This said, there are several ways to solve this issue. For example, we could use the [Context API](https://es.reactjs.org/docs/context.html) from React to create a custom internationalization layer, but I think that was way too complicated for the purpose of this application, which is to offer the possibility of having a few posts translated into other languages — something similar to what **Dan Abramov** does in his blog [Overreacted](https://overreacted.io/).
+This said, there are several ways to solve this issue. For example, we could use the React [Context API](https://es.reactjs.org/docs/context.html) to create a custom internationalization layer, but I think that was way too complicated for the purpose of this application, which is to offer the possibility of having a few posts translated into other languages — something similar to what **Dan Abramov** does in his blog [Overreacted](https://overreacted.io/).
 
 ![Overreacted](/img/posts/overreacted.png)
 
@@ -58,7 +58,7 @@ const defaultPostsDirectory = path.join(postsDirectory, constants.DEFAULT_LANG);
 
 2. Modify the method to extract all the posts and their metadata.
 
-```ts
+```js
 export const getSortedPostsData = (): PostMetadata[] => {
   // Get file names under /posts/{defaultLang}
   const fileNames = fs.readdirSync(defaultPostsDirectory);
@@ -89,7 +89,7 @@ export const getSortedPostsData = (): PostMetadata[] => {
 
 3. Modify the method to get all the paths of the posts (this is needed for the `getStaticPaths` method, we will see it later).
 
-```ts
+```js
 export const getAllPathsFromPosts = (): PostPath[] => {
   // Get the posts from the default languange
   const fileNames = fs.readdirSync(defaultPostsDirectory);
@@ -125,7 +125,7 @@ export const getAllPathsFromPosts = (): PostPath[] => {
 
 4. Modify the method to extract the markdown content from a specific post and convert it into HTML.
 
-```ts
+```js
 export const getPostData = async (
   lang: string = Constants.DEFAULT_LANG,
   id: string
@@ -166,7 +166,7 @@ After this, we need to go to the Next.js page where we are rendering the content
 
 Once we have renamed the file, we only need to add the `getStaticPaths` and `getStaticProps` methods inside the Next.js page.
 
-```ts
+```js
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPathsFromPosts();
 
@@ -195,7 +195,7 @@ export const getStaticProps: GetStaticProps = async ({
 
 Last but not least, if we want to show the available translations of a post, we will need to create a `PostTranslations` component in order to use it in `[[...slug]].tsx`.
 
-```tsx
+```jsx
 /** Components */
 import CustomLink from '@components/CustomLink';
 /** Constants */
@@ -247,7 +247,7 @@ const PostTranslations = ({
 export default PostTranslations;
 ```
 
-```tsx
+```jsx
 const PostTemplate = ({
   id,
   content,
